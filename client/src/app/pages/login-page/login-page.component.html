@@ -1,0 +1,39 @@
+<div class="login-page" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px">
+  <p-toast position="top-right"></p-toast>
+  <div class="blurred-box">
+    <p-card>
+      <p-header>
+        <div class="logo-container" fxFlexAlign="center">
+          <app-logo></app-logo>
+        </div>
+      </p-header>
+      <form (keyup.enter)="login(email, password)">
+        <div class="login-field field p-fluid">
+          <input id="username-input"
+                 placeholder="Username"
+                 pInputText name="email"
+                 [(ngModel)]="email" type="email"
+                 autocomplete="username email">
+        </div>
+        <div class="login-field field p-fluid">
+          <input id="password-input"
+                 placeholder="Password"
+                 pInputText
+                 name="email"
+                 [(ngModel)]="password" type="password">
+        </div>
+      </form>
+      <div class="p-fluid field login-field">
+        <button pButton class="login-button p-button p-ripple"
+                type="button" label="{{'Login' | translate}}"
+                (click)="login(email, password)"></button>
+      </div>
+      <p-footer>
+        <hr class="footer-separator">
+        <div class="login-title"><span
+          class="app-name">Meant To Bee Administration</span><span>Version: {{appVersion}}</span>
+        </div>
+      </p-footer>
+    </p-card>
+  </div>
+</div>
