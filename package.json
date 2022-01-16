@@ -1,0 +1,45 @@
+{
+  "name": "expo-push-notification-server",
+  "version": "0.0.1",
+  "description": "Push Notification Server for Expo Notifications",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon ./src/app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meecodebymariomurrent/expo-push-notification-server.git"
+  },
+  "keywords": [
+    "Expo",
+    "Push",
+    "Notifications",
+    "Server"
+  ],
+  "author": "Mario Murrent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meecodebymariomurrent/expo-push-notification-server/issues"
+  },
+  "homepage": "https://github.com/meecodebymariomurrent/expo-push-notification-server#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.8",
+    "@types/rethinkdb": "^2.3.17",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^12.0.3",
+    "express": "^4.17.2",
+    "express-winston": "^4.2.0",
+    "inversify": "^6.0.1",
+    "inversify-express-utils": "^6.4.3",
+    "reflect-metadata": "^0.1.13",
+    "rethinkdb-ts": "^2.4.18",
+    "winston": "^3.4.0"
+  }
+}
