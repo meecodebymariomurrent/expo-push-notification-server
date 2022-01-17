@@ -7,20 +7,15 @@ import {
     Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
-import { StorageService } from '../core/services/storage/storage.service';
-import { StorageKey } from '../core/services/storage/storage.model';
-import { TranslateService } from '@ngx-translate/core';
-import { Page } from '../core/constants/page.enum';
+import { Page } from '../constants/page.enum';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-    constructor(private authService: AuthService,
-                private router: Router,
-                private storageService: StorageService,
-                private translateService: TranslateService) {
+    constructor(private authenticationService: AuthenticationService,
+                private router: Router) {
     }
 
     canActivate(
@@ -31,12 +26,11 @@ export class AuthGuard implements CanActivate {
         | Promise<boolean | UrlTree>
         | boolean
         | UrlTree {
-        const hasSelectedEvent = this.storageService.hasValue(StorageKey.SELECTED_EVENT);
-        if (this.authService.isLogged() && hasSelectedEvent) {
-            this.authService.redirectUrl = null;
+        if (this.authenticationService.isLogged()) {
+            this.authenticationService.redirectUrl = null;
             return true;
         }
-        this.authService.redirectUrl = state.url;
+        this.authenticationService.redirectUrl = state.url;
         this.router.navigate([Page.Login]);
         return false;
     }

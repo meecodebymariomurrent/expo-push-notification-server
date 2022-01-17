@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { catchError } from 'rxjs/operators';
 import { HttpHeaderName } from '../../constants/http-header-name.enum';
 import { HttpHeaderValue } from '../../constants/http-header-value.enum';
-import { throwError } from 'rxjs';
+import { lastValueFrom, throwError } from 'rxjs';
 import { BackendError } from '../../models/backend-error.model';
 import { EnvironmentService } from '../environment.service';
 import { Injectable, Injector } from '@angular/core';
@@ -15,36 +15,32 @@ import { Router } from '@angular/router';
 export class CrudService {
     protected constructor(private httpClient: HttpClient,
                           private environmentService: EnvironmentService,
-                          private logger: NGXLogger,
-                          private injector: Injector,
-                          private router: Router) {
+                          private logger: NGXLogger) {
     }
 
-    public async get<G>(request: string): Promise<G | null> {
-        let response = null;
+    public async get<G>(request: string): Promise<G | undefined> {
+        let response;
         try {
-            response = await this.httpClient
-                .get<G>(request)
-                .toPromise();
-        } catch (error) {
+            response = await lastValueFrom(this.httpClient
+                .get<G>(request));
+        } catch (error: any) {
             response = this.errorHandler('GET', error);
         }
         return response;
     }
 
-    public async post(body): Promise<any> {
-        let response = null;
+    public async post(body: any): Promise<any> {
+        let response;
         try {
-            response = await this.httpClient
-                .post('', body)
-                .toPromise();
-        } catch (error) {
+            response = await lastValueFrom(this.httpClient
+                .post('', body));
+        } catch (error: any) {
             response = this.errorHandler('POST', error);
         }
         return response;
     }
 
-    public getData<T>(restUrl: string, httpParameter: HttpParams = null) {
+    public getData<T>(restUrl: string, httpParameter: HttpParams) {
         return this.httpClient
             .get<T>(`${this.environmentService.getBackendServerUrl()}/${restUrl}`, {
                 params: httpParameter,
@@ -54,21 +50,21 @@ export class CrudService {
     }
 
     public postData<T, R>(restUrl: string, data: R) {
-        return this.httpClient
+        return lastValueFrom(this.httpClient
             .post<T>(`${this.environmentService.getBackendServerUrl()}/${restUrl}`, data, this.getHttpParameters())
-            .pipe(catchError(this.handleError)).toPromise();
+            .pipe(catchError(this.handleError)));
     }
 
     public putData<T>(restUrl: string, data: T) {
-        return this.httpClient
+        return lastValueFrom(this.httpClient
             .put<T>(`${this.environmentService.getBackendServerUrl()}/${restUrl}`, data, this.getHttpParameters())
-            .pipe(catchError(this.handleError)).toPromise();
+            .pipe(catchError(this.handleError)));
     }
 
     public delete<T>(restUrl: string, id: string) {
-        return this.httpClient
+        return lastValueFrom(this.httpClient
             .delete<T>(`${this.environmentService.getBackendServerUrl()}/${restUrl}/${id}`, this.getHttpParameters())
-            .pipe(catchError(this.handleError)).toPromise();
+            .pipe(catchError(this.handleError)));
     }
 
     private getHttpHeaders(): HttpHeaders {

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import packageInfo from '../../../../package.json';
-import { AuthenticationService } from '../../../../../src/services/authentication.service';
 import { Router } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
+import { MessageSeverity } from '../../constants/primeng/message-severity.enum';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login-page',
@@ -14,9 +15,9 @@ export class LoginPageComponent implements OnInit {
 
   private redirectUrl = '';
 
-  public email: string;
-  public password: string;
-  public errorMessage: string;
+  public email: string = '';
+  public password: string = '';
+  public errorMessage: string = '';
   public appVersion: string = packageInfo.version;
 
   constructor(private authenticationService: AuthenticationService,
@@ -41,14 +42,14 @@ export class LoginPageComponent implements OnInit {
       this.redirectUrl = url;
     } catch (e) {
       this.errorMessage = 'Wrong Credentials!';
-      const message: Message = new PrimeNGMessageBuilder().severity(MessageSeverity.Error).summary(this.errorMessage).build();
+      const message: Message = { severity : MessageSeverity.Error, summary: this.errorMessage};
       this.messageService.add(message);
       this.logger.error('Unable to Login!\n', e);
     }
   }
 
   public navigateTo(url?: string) {
-    url = url || 'nav';
+    url = url || '';
     this.router.navigate([url], {replaceUrl: true}).catch(console.error);
   }
 }

@@ -18,7 +18,10 @@ export class StorageService {
 
     public read(key: StorageKey): any {
         const value = this.storage.getItem(key);
-        return JSON.parse(value);
+        if(value){
+          return JSON.parse(value);
+        }
+        return null;
     }
 
     public hasValue(key: StorageKey): boolean {

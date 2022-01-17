@@ -8,6 +8,8 @@
     "experimentalDecorators": true,
     "types": ["reflect-metadata"],
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "lib": ["es6", "dom"]
   }
 }

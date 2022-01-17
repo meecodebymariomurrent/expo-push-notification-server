@@ -1,0 +1,6 @@
+{
+  "databaseName": "expo-push-notification",
+  "tables": [
+    "user"
+  ]
+}

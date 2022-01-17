@@ -7,7 +7,7 @@
  */
 import 'reflect-metadata';
 import { injectable } from 'inversify';
-import { SessionModel } from '../../api/common/session.model';
+import { SessionModel } from '../models/session.model';
 import { SessionState } from '../constants/session-state.enum';
 
 @injectable()

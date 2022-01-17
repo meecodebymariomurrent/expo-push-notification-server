@@ -1,4 +1,4 @@
-import winston, {format, transports, addColors, createLogger} from 'winston';
+import { format, transports, addColors, createLogger } from 'winston';
 
 const levels = {
     error: 0,

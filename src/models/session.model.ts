@@ -6,7 +6,7 @@
  *
  */
 
-import { SessionState } from '../../core/constants/session-state.enum';
+import { SessionState } from '../constants/session-state.enum';
 
 export class SessionModel {
 

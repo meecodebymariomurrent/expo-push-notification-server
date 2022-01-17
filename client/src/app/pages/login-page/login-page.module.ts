@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginPageRoutingModule } from './login-page-routing.module';
 import { LoginPageComponent } from './login-page.component';
-import { LogoModule } from '../../core/components/logo/logo.module';
+import { LogoModule } from '../../components/logo/logo.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';

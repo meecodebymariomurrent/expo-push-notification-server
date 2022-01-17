@@ -6,21 +6,21 @@ import {
     HttpInterceptor,
     HttpRequest,
 } from '@angular/common/http';
-import { AuthService } from '../../../auth/auth.service';
+import { AuthenticationService } from '../authentication.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
-    constructor(private authService: AuthService, private router: Router) {
+    constructor(private authenticationService: AuthenticationService, private router: Router) {
     }
 
     intercept(
         req: HttpRequest<any>,
         next: HttpHandler,
     ): Observable<HttpEvent<any>> {
-        const token: string = this.authService.getToken();
+        const token: string = this.authenticationService.getToken();
 
         if (token) {
             req = req.clone({

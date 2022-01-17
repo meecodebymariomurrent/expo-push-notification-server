@@ -1,0 +1,49 @@
+.login-page {
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+}
+
+.logo-container {
+  height: auto;
+  width: 80px;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.login-field {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.blurred-box {
+  position: relative;
+  background: inherit;
+  border-radius: 2px;
+  overflow: hidden;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+
+  .login-title {
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+
+    .app-name{
+      padding-right: 20px;
+    }
+  }
+
+  .login-button {
+    width: 100%;
+  }
+
+  .footer-separator {
+    color: lightgrey;
+  }
+}

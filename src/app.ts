@@ -9,6 +9,7 @@ import { InversifyExpressServer } from 'inversify-express-utils';
 import bodyParser from 'body-parser';
 import './controller';
 import path from 'path';
+import { jwtMiddleware } from './middleware/jwt.middleware';
 
 ConfigLoader.load('.env').catch((error: Error) => logger.error(error.message));
 const container = ContainerConfigLoader.load();
@@ -16,11 +17,10 @@ const server = new InversifyExpressServer(container);
 
 const app = express();
 app.use(expressWinston.logger(expressWinstonConfig));
+app.use(jwtMiddleware);
 
 server.setConfig((app) => {
-    app.use(bodyParser.urlencoded({
-        extended: true,
-    }));
+    app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
     app.use('/', express.static(path.join(__dirname, 'public')));
 });
