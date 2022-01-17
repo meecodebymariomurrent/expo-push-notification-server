@@ -3,6 +3,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { DatabaseService } from '../services/database.service';
 import { UserService } from '../services/user.service';
 import { SessionService } from '../services/session.service';
+import { SubscriberService } from '../services/subscriber.service';
 
 export class ContainerConfigLoader {
     public static load(): Container {
@@ -11,6 +12,7 @@ export class ContainerConfigLoader {
         container.bind<DatabaseService>(DatabaseService.name).to(DatabaseService).inSingletonScope();
         container.bind<UserService>(UserService.name).to(UserService).inSingletonScope();
         container.bind<SessionService>(SessionService.name).to(SessionService).inSingletonScope();
+        container.bind<SubscriberService>(SubscriberService.name).to(SubscriberService).inSingletonScope();
         return container;
     }
 }

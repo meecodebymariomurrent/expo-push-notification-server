@@ -36,7 +36,7 @@ const winstonFormat = format.combine(
     format.align(),
     format.colorize(),
     format.printf(
-        (info) => `${info.timestamp} ${info.level}: ${info.message}`,
+        (info) => `${info.timestamp} ${info.level}: ${info.message.trim()}`,
     )
 )
 

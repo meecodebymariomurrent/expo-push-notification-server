@@ -5,8 +5,15 @@ export const expressWinstonConfig = {
         new winston.transports.Console()
     ],
     format: format.combine(
+        format.label({
+            label: '[LOGGER]'
+        }),
+        format.timestamp({format: 'YYYY-MM-DD HH:mm:ss:ms'}),
         format.colorize(),
-        format.json()
+        format.json(),
+        format.printf(
+            (info) => `${info.timestamp} ${info.level}: ${info.message.trim()}`,
+        )
     ),
     meta: true,
     msg: 'HTTP {{req.method}} {{req.url}}',

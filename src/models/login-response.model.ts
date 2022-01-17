@@ -6,7 +6,6 @@
  *
  */
 export interface LoginResponseModel {
-
     loggedIn: boolean;
     token: string;
 }

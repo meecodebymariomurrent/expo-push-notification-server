@@ -10,6 +10,7 @@
 
 ## ToDos
 
+- [ ] Improve error handling
 - [ ] Add support for Keycloak 
 - [ ] Add support for MongoDB as alternative to RethinkDB
 

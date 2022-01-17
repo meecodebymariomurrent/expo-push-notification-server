@@ -1,4 +1,4 @@
-export class NotificationTokenModel {
+export class SubscriberModel {
     token: string;
     lastUpdate: Date;
     expired: boolean;

@@ -10,21 +10,29 @@ export class DatabaseService {
     public initialize(): Promise<boolean> {
         return new Promise<boolean>((resolve, reject) => {
             this.connect().then((connection: Connection) => {
-                r.dbCreate('wedding-app').run(connection).then(() => {
-                    this.creatTables(connection).then(() => {
-                        logger.info('Tables created');
-                        resolve(true);
+                r.dbList()
+                    .contains(this.getDatabaseName())
+                    .do((containsDatabase: RDatum<boolean>) => {
+                        return r.branch(
+                            containsDatabase,
+                            {created: 0},
+                            r.dbCreate(this.getDatabaseName())
+                        );
+                    })
+                    .run(connection)
+                    .then(() => {
+                        this.createTables(connection)
+                            .then(() => {
+                                resolve(true);
+                            })
+                            .catch((error) => {
+                                logger.error(error);
+                                reject(false);
+                            });
                     });
-                }).catch(() => {
-                    logger.info('Database already exists');
-                    this.creatTables(connection).then(() => {
-                        logger.info('Tables created');
-                        resolve(true);
-                    });
-                });
             }).catch((error) => {
                 logger.error('Error while connecting to the database');
-                reject(error);
+                reject('An error occurred while initializing the database');
             });
         });
     }
@@ -175,34 +183,42 @@ export class DatabaseService {
         return item;
     }
 
-    private creatTables(connection: Connection): Promise<boolean> {
-        return new Promise((resolve) => {
+    private createTables(connection: Connection): Promise<boolean> {
+        return new Promise((resolve, reject) => {
             const promises = new Array<Promise<boolean>>();
             this.getDatabaseTables().forEach((table) => {
                 promises.push(this.createTable(connection, table));
             });
-            Promise.all(promises).then(() => {
-                resolve(true);
-            }).catch(() => {
-                logger.error(`Error while creating tables`);
-                resolve(false);
-            });
+            Promise.all(promises)
+                .then(() => {
+                    resolve(true);
+                })
+                .catch((error) => {
+                    logger.error(error);
+                    reject(false);
+                });
         });
     }
 
-    private createTable(connection: Connection, table: string): Promise<boolean> {
-        return new Promise<boolean>((resolve, reject) => {
-            r.db(this.getDatabaseName())
+    private createTable(connection: Connection, tableName: string): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            r.db(databaseConfiguration.databaseName)
                 .tableList()
-                .contains(table)
+                .contains(tableName)
                 .do((containsTable: RDatum<boolean>) => {
-                    return r.branch(containsTable, {created: 0}, r.tableCreate(table));
+                    return r.branch(
+                        containsTable,
+                        {create: 0},
+                        r.db(databaseConfiguration.databaseName).tableCreate(tableName)
+                    );
                 })
                 .run(connection)
-                .then(resolve)
+                .then(() => {
+                    resolve(true);
+                })
                 .catch((error) => {
                     logger.error(error);
-                    reject(error);
+                    reject(false);
                 });
         });
     }
