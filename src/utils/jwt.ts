@@ -4,7 +4,6 @@ import { JwtPayload, VerifyErrors } from 'jsonwebtoken';
 const generateAccessToken = (username: string): Promise<string> => {
     return new Promise<string>((resolve, reject) => {
         return jwt.sign({username: username}, process.env.TOKEN_SECRET, {expiresIn: '1h'}, (error, token) => {
-            console.log(error, token);
             if (error) {
                 reject(error)
             }
