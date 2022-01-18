@@ -7,8 +7,9 @@ import { ApiError } from '../models/errors/api-error.model';
 import { SubscriberRequest } from '../models/request/subscriber-request.model';
 import { DatabaseCreationError } from '../models/errors/database-creation-error.model';
 import logger from '../utils/logger';
+import { JwtMiddleware } from '../middleware/jwt.middleware';
 
-@controller('/subscriber')
+@controller('/subscriber', JwtMiddleware.name)
 export class SubscriberController implements interfaces.Controller {
     constructor(@inject(SubscriberService.name) private subscriberService: SubscriberService,) {
     }

@@ -8,13 +8,10 @@ import { expressWinstonConfig } from './config/express-winston.config';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import bodyParser from 'body-parser';
 import path from 'path';
-import { jwtMiddleware } from './middleware/jwt.middleware';
 import { DatabaseService } from './services/database.service';
 import './controller';
 import helmet from 'helmet';
 import cors from 'cors';
-
-const excludedJwtPaths = ['/login', '/user/create'];
 
 ConfigLoader.load('.env').catch((error: Error) => logger.error(error.message));
 const container = ContainerConfigLoader.load();
@@ -30,7 +27,6 @@ const initializeServer = () => {
     server.setConfig((app) => {
         app.use(bodyParser.urlencoded({extended: true}));
         app.use(bodyParser.json());
-        app.use(unless(excludedJwtPaths, jwtMiddleware));
         app.use(expressWinston.logger(expressWinstonConfig));
         app.use('/', express.static(path.join(__dirname, 'public')));
         app.use(helmet());
@@ -44,14 +40,3 @@ const initializeServer = () => {
         logger.info(`Expo push notification server is running on port ${port}.`);
     });
 }
-
-const unless = (paths: Array<string>, middleware: any): any => {
-    return (req, res, next) => {
-        if (paths.indexOf(req.path) > -1) {
-            return next();
-        } else {
-            return middleware(req, res, next);
-        }
-    };
-};
-

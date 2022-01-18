@@ -6,13 +6,16 @@ NodeJS Typescript server based on [expressJS](https://expressjs.com/)
 
 ### Requirements
 
-- Existing RethinkDB
+- Existing [RethinkDB](https://rethinkdb.com/docs/install/)
 
 ## Frontend
 
 Angular Frontend
 
 ## ToDos
+
+- [ ] Dockerize
+- [ ] Abstract logic to use any database 
 
 ### Frontend
 

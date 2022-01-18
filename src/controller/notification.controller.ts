@@ -6,9 +6,10 @@ import { Subscriber } from '../models/subscriber.model';
 import { StatusCodes } from 'http-status-codes';
 import { Expo, ExpoPushMessage } from 'expo-server-sdk';
 import { UserService } from '../services/user.service';
+import { JwtMiddleware } from '../middleware/jwt.middleware';
 
 
-@controller('/notification')
+@controller('/notification', JwtMiddleware.name)
 export class NotificationController implements interfaces.Controller {
     private expoClient: Expo = new Expo();
 
