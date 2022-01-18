@@ -7,6 +7,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { inject } from 'inversify';
 import { transformAndValidate } from 'class-transformer-validator';
 import { LoginError } from '../models/errors/login-error.model';
+import logger from '../utils/logger';
 
 @controller('/login')
 export class LoginController implements interfaces.Controller {
@@ -20,6 +21,7 @@ export class LoginController implements interfaces.Controller {
             const accessData = await this.authenticationService.login(loginData);
             response.status(StatusCodes.OK).send(accessData);
         } catch (error) {
+            logger.error('Error while logging in', [error]);
             if (error instanceof LoginError) {
                 response
                     .status(StatusCodes.CONFLICT)

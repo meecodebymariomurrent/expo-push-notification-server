@@ -11,12 +11,14 @@ import { MessageService } from 'primeng/api';
 import { HttpConfigInterceptor } from './services/http/interceptor.service';
 import { RegisterPageModule } from './pages/register-page/register-page.module';
 import { LoginPageModule } from './pages/login-page/login-page.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

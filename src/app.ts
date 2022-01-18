@@ -11,6 +11,8 @@ import path from 'path';
 import { jwtMiddleware } from './middleware/jwt.middleware';
 import { DatabaseService } from './services/database.service';
 import './controller';
+import helmet from 'helmet';
+import cors from 'cors';
 
 const excludedJwtPaths = ['/login', '/user/create'];
 
@@ -31,6 +33,8 @@ const initializeServer = () => {
         app.use(unless(excludedJwtPaths, jwtMiddleware));
         app.use(expressWinston.logger(expressWinstonConfig));
         app.use('/', express.static(path.join(__dirname, 'public')));
+        app.use(helmet());
+        app.use(cors());
     });
 
     const serverInstance = server.build();

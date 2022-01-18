@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/meecodebymariomurrent/expo-push-notification-server#readme",
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.7",
     "@types/lodash": "^4.14.178",
@@ -42,6 +43,7 @@
     "expo-server-sdk": "^3.6.0",
     "express": "^4.17.2",
     "express-winston": "^4.2.0",
+    "helmet": "^5.0.1",
     "http-status-codes": "^2.2.0",
     "inversify": "^6.0.1",
     "inversify-express-utils": "^6.4.3",

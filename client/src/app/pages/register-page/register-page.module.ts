@@ -27,7 +27,7 @@ import { UserInputModule } from '../../components/user-input/user-input.module';
     MessageModule,
     ToastModule,
     TranslateModule,
-    UserInputModule
+    UserInputModule,
   ]
 })
 export class RegisterPageModule {

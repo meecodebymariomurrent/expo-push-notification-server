@@ -16,7 +16,6 @@ import { UserInputValues } from '../../models/user-input-values.model';
 })
 export class LoginPageComponent implements OnInit {
 
-  private redirectUrl = '';
   public errorMessage: string = '';
   public appVersion: string = packageInfo.version;
 
@@ -35,7 +34,7 @@ export class LoginPageComponent implements OnInit {
 
   public async login(data: UserInputValues) {
     try {
-      this.redirectUrl = await this.authenticationService.login(data.username, sha256(data.password));
+      await this.authenticationService.login(data.username, sha256(data.password));
       this.navigateTo(Page.Home);
     } catch (e) {
       this.errorMessage = 'Wrong Credentials!';

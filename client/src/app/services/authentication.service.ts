@@ -23,15 +23,14 @@ export class AuthenticationService {
     this.token = this.storage.read(StorageKey.AUTH_TOKEN) || '';
   }
 
-  public async login(username: string, password: string): Promise<string> {
+  public async login(username: string, password: string): Promise<boolean> {
     try {
-      const response = await this.crudService.postData<LoginResponse, LoginRequest>(ApiPath.Login, {
+      await this.crudService.postData<LoginResponse, LoginRequest>(ApiPath.Login, {
         username,
         password
       });
-      this.token = response.token;
       this.storage.save(StorageKey.AUTH_TOKEN, this.token);
-      return Promise.resolve(Page.Home);
+      return Promise.resolve(true);
     } catch (error) {
       this.logger.error('Error during login request', error);
       return Promise.reject(error);

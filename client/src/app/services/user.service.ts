@@ -15,13 +15,13 @@ export class UserService {
 
   public async create(username: string, password: string): Promise<boolean> {
     try {
-      await this.crudService.postData<LoginResponse, LoginRequest>(ApiPath.Login, {
+      await this.crudService.postData<LoginResponse, LoginRequest>(ApiPath.Register, {
         username,
         password
       });
       return Promise.resolve(true);
     } catch (error) {
-      this.logger.error('Error during login request', error);
+      this.logger.error('Error while creating user', error);
       return Promise.reject(error);
     }
   }

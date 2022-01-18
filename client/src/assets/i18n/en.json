@@ -5,6 +5,7 @@
   "Register": {
     "NewAccount": "Register New Account",
     "Register": "Register",
-    "AccountCreated": "Account successfully created"
+    "AccountCreated": "Account successfully created",
+    "GoToLogin": "Process to login?"
   }
 }

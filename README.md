@@ -2,17 +2,23 @@
 
 ## Server
 
+NodeJS Typescript server based on [expressJS](https://expressjs.com/)
+
 ### Requirements
 
 - Existing RethinkDB
 
 ## Frontend
 
+Angular Frontend
+
 ## ToDos
 
 ### Frontend
 
 - [ ] Global navigation logic
+- [ ] Add more translations
+  - [ ] German
 
 ### Backend
 
