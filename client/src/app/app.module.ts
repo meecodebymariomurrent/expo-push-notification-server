@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,7 @@ import { HttpConfigInterceptor } from './services/http/interceptor.service';
 import { RegisterPageModule } from './pages/register-page/register-page.module';
 import { LoginPageModule } from './pages/login-page/login-page.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomePageModule } from './pages/home-page/home-page.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     RegisterPageModule,
     LoginPageModule,
-    LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR }),
+    HomePageModule,
+    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR}),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -43,7 +45,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

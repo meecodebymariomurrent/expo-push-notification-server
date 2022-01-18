@@ -1,1 +1,10 @@
-<p>home-page works!</p>
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <div>{{'App.Title' | translate}}</div>
+  </div>
+
+  <div class="p-toolbar-group-right">
+    <p-menu #menu [popup]="true" [model]="items"></p-menu>
+    <button type="button" class="p-button-outlined" pButton icon="pi pi-bars"(click)="menu.toggle($event)"></button>
+  </div>
+</p-toolbar>

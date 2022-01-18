@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './home-page.component';
 import { LogoModule } from '../../components/logo/logo.module';
@@ -11,6 +11,8 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { TranslateModule } from '@ngx-translate/core';
+import { ToolbarModule } from 'primeng/toolbar';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [HomePageComponent],
@@ -25,8 +27,10 @@ import { TranslateModule } from '@ngx-translate/core';
     MessagesModule,
     MessageModule,
     ToastModule,
-    TranslateModule
-  ]
+    TranslateModule,
+    ToolbarModule,
+    MenuModule
+  ],
 })
 export class HomePageModule {
 }

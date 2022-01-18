@@ -7,14 +7,12 @@ import { NGXLogger } from 'ngx-logger';
 import { ApiPath } from '../constants/api-path.enum';
 import { LoginRequest } from '../models/request/login-request.model';
 import { LoginResponse } from '../models/response/login-response.model';
-import { Page } from '../constants/page.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
   token: string = '';
-  redirectUrl: string | null = null;
 
   constructor(private http: HttpClient,
               private storage: StorageService,
@@ -25,10 +23,11 @@ export class AuthenticationService {
 
   public async login(username: string, password: string): Promise<boolean> {
     try {
-      await this.crudService.postData<LoginResponse, LoginRequest>(ApiPath.Login, {
+      const response = await this.crudService.postData<LoginResponse, LoginRequest>(ApiPath.Login, {
         username,
         password
       });
+      this.token = response.token;
       this.storage.save(StorageKey.AUTH_TOKEN, this.token);
       return Promise.resolve(true);
     } catch (error) {
