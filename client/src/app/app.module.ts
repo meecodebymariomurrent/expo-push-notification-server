@@ -9,6 +9,8 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { HttpConfigInterceptor } from './services/http/interceptor.service';
+import { RegisterPageModule } from './pages/register-page/register-page.module';
+import { LoginPageModule } from './pages/login-page/login-page.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { HttpConfigInterceptor } from './services/http/interceptor.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RegisterPageModule,
+    LoginPageModule,
     LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR }),
     TranslateModule.forRoot({
       loader: {

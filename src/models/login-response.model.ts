@@ -5,7 +5,7 @@
  *  Written by MeeCode by Mario Murrent
  *
  */
-export interface LoginResponseModel {
+export interface LoginResponse {
     loggedIn: boolean;
     token: string;
 }

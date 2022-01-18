@@ -7,7 +7,7 @@
  */
 import 'reflect-metadata';
 import { injectable } from 'inversify';
-import { SessionModel } from '../models/session.model';
+import { Session } from '../models/session.model';
 import { SessionState } from '../constants/session-state.enum';
 
 @injectable()
@@ -30,10 +30,10 @@ export class SessionService {
      *
      * @param username the username to use
      * @param token the token to use
-     * @returns {SessionModel} the session model
+     * @returns {Session} the session model
      */
-    public startSession(username: string, token: string): SessionModel {
-        const session = new SessionModel();
+    public startSession(username: string, token: string): Session {
+        const session = new Session();
         if (!this.sessions.has(token)) {
             this.sessions.set(token, username);
         }
@@ -46,10 +46,10 @@ export class SessionService {
      *
      * @param username the username to use
      * @param token the token to use
-     * @returns {SessionModel} the session model
+     * @returns {Session} the session model
      */
-    public stopSession(username: string, token: string): SessionModel {
-        const session = new SessionModel();
+    public stopSession(username: string, token: string): Session {
+        const session = new Session();
         if (this.sessions.has(token)) {
             this.sessions.delete(token);
             session.sessionState = SessionState.Ended;

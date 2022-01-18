@@ -4,6 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { StorageService } from './storage/storage.service';
 import { StorageKey } from './storage/storage.model';
 import { NGXLogger } from 'ngx-logger';
+import { ApiPath } from '../constants/api-path.enum';
+import { LoginRequest } from '../models/request/login-request.model';
+import { LoginResponse } from '../models/response/login-response.model';
+import { Page } from '../constants/page.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -19,29 +23,18 @@ export class AuthenticationService {
     this.token = this.storage.read(StorageKey.AUTH_TOKEN) || '';
   }
 
-  public async login(email: string, password: string) {
+  public async login(username: string, password: string): Promise<string> {
     try {
-      this.token = await this.crudService.post({email, password});
+      const response = await this.crudService.postData<LoginResponse, LoginRequest>(ApiPath.Login, {
+        username,
+        password
+      });
+      this.token = response.token;
       this.storage.save(StorageKey.AUTH_TOKEN, this.token);
-      return this.redirectUrl;
+      return Promise.resolve(Page.Home);
     } catch (error) {
       this.logger.error('Error during login request', error);
       return Promise.reject(error);
-    }
-  }
-
-  public async mockLogin(email: string, password: string): Promise<any> {
-    try {
-      if (!(email === 'user' && password === 'user')) {
-        throw new Error(
-          'When using mockLogin, login with credentials: \nemail: users\npassword:users',
-        );
-      }
-      this.token = 'user';
-      this.storage.save(StorageKey.AUTH_TOKEN, this.token);
-      return this.redirectUrl;
-    } catch (e: any) {
-      return Promise.reject(e.message);
     }
   }
 

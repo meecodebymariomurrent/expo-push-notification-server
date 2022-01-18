@@ -2,7 +2,7 @@ import { controller, httpPost, interfaces } from 'inversify-express-utils';
 import { Request, Response } from 'express';
 import { inject } from 'inversify';
 import { SubscriberService } from '../services/subscriber.service';
-import { SubscriberModel } from '../models/subscriber.model';
+import { Subscriber } from '../models/subscriber.model';
 import { StatusCodes } from 'http-status-codes';
 import { Expo, ExpoPushMessage } from 'expo-server-sdk';
 import { UserService } from '../services/user.service';
@@ -21,7 +21,7 @@ export class NotificationController implements interfaces.Controller {
         try {
             const subscriber = await this.subscriberService.getAll();
             const messages = new Array<ExpoPushMessage>();
-            subscriber.forEach((subscriber: SubscriberModel) => {
+            subscriber.forEach((subscriber: Subscriber) => {
                 if (!Expo.isExpoPushToken(subscriber.token)) {
                     return console.error(`Push token ${subscriber.token} is not a valid Expo push token`);
                 }

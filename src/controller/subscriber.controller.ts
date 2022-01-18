@@ -3,9 +3,9 @@ import { Request, Response } from 'express';
 import { inject } from 'inversify';
 import { SubscriberService } from '../services/subscriber.service';
 import { StatusCodes } from 'http-status-codes';
-import { ApiErrorModel } from '../models/api-error.model';
-import { SubscriberModel } from '../models/subscriber.model';
-import { SubscriberRequestModel } from '../models/request/subscriber-request.model';
+import { ApiError } from '../models/errors/api-error.model';
+import { SubscriberRequest } from '../models/request/subscriber-request.model';
+import { DatabaseCreationError } from '../models/errors/database-creation-error.model';
 
 @controller('/subscriber')
 export class SubscriberController implements interfaces.Controller {
@@ -13,28 +13,30 @@ export class SubscriberController implements interfaces.Controller {
     }
 
     @httpGet('/')
-    public getSubscriber(request: Request, response: Response): void {
-        this.subscriberService.getAll().then((data: Array<SubscriberModel>) => {
-            response.json(data);
-        }).catch(() => {
-            response.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
-        });
+    public async getAllSubscriber(request: Request, response: Response): Promise<void> {
+        try {
+            const subscriber = await this.subscriberService.getAll();
+            response.json(subscriber);
+        } catch (error) {
+            response.status(StatusCodes.INTERNAL_SERVER_ERROR)
+                .send(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
+        }
     }
 
     @httpPost('/create')
-    public create(request: Request, response: Response): void {
+    public async create(request: Request, response: Response): Promise<void> {
         try {
-            const subscriberData = request.body as SubscriberRequestModel;
-            this.subscriberService.create(subscriberData).then((accessData: SubscriberModel) => {
-                response.status(StatusCodes.OK).send(accessData);
-            }).catch(() => {
-                const error = new ApiErrorModel('Error while creating subscriber', StatusCodes.INTERNAL_SERVER_ERROR);
-                response.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error);
-            });
+            const subscriberData = request.body as SubscriberRequest;
+            const subscriber = await this.subscriberService.create(subscriberData);
+            response.status(StatusCodes.OK).send(subscriber);
         } catch (error) {
-            response
-                .status(StatusCodes.BAD_REQUEST)
-                .json(new ApiErrorModel('Bad Request', StatusCodes.BAD_REQUEST, error));
+            if (error instanceof DatabaseCreationError) {
+                response.status(StatusCodes.CONFLICT)
+                    .send(new ApiError(error.message, StatusCodes.CONFLICT, error));
+            } else {
+                response.status(StatusCodes.INTERNAL_SERVER_ERROR)
+                    .send(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
+            }
         }
     }
 }

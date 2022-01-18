@@ -1,0 +1,21 @@
+<form (keyup.enter)="submitValues(username, password)">
+  <div class="user-input-field field p-fluid">
+    <input id="username-input"
+           placeholder="Username"
+           pInputText name="username"
+           [(ngModel)]="username" type="username"
+           autocomplete="username email">
+  </div>
+  <div class="user-input-field field p-fluid">
+    <input id="password-input"
+           placeholder="Password"
+           pInputText
+           name="password"
+           [(ngModel)]="password" type="password">
+  </div>
+</form>
+<div class="p-fluid field user-input-field">
+  <button pButton class="user-input-button p-button p-ripple"
+          type="button" label="{{buttonCaption | translate}}"
+          (click)="submitValues(username, password)"></button>
+</div>

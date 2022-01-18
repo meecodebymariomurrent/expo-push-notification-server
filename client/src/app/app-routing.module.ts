@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Page } from './constants/page.enum';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () =>
-      import('./pages/login-page/login-page.module').then(
-        m => m.LoginPageModule,
-      ),
+    path: Page.Login,
+    component: LoginPageComponent
   },
   {
-    path: 'home',
-    loadChildren: () =>
-      import('./pages/home-page/home-page.module').then(
-        m => m.HomePageModule,
-      ),
+    path: Page.Home,
+    component: HomePageComponent
+  },
+  {
+    path: Page.Register,
+    component: RegisterPageComponent
   },
   {
     path: '**',
-    redirectTo: 'login',
+    redirectTo: '',
   },
 ];
 
@@ -27,4 +29,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

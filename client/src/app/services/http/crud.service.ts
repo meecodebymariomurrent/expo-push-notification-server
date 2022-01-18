@@ -5,9 +5,8 @@ import { HttpHeaderValue } from '../../constants/http-header-value.enum';
 import { lastValueFrom, throwError } from 'rxjs';
 import { BackendError } from '../../models/backend-error.model';
 import { EnvironmentService } from '../environment.service';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
-import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root',
@@ -16,28 +15,6 @@ export class CrudService {
     protected constructor(private httpClient: HttpClient,
                           private environmentService: EnvironmentService,
                           private logger: NGXLogger) {
-    }
-
-    public async get<G>(request: string): Promise<G | undefined> {
-        let response;
-        try {
-            response = await lastValueFrom(this.httpClient
-                .get<G>(request));
-        } catch (error: any) {
-            response = this.errorHandler('GET', error);
-        }
-        return response;
-    }
-
-    public async post(body: any): Promise<any> {
-        let response;
-        try {
-            response = await lastValueFrom(this.httpClient
-                .post('', body));
-        } catch (error: any) {
-            response = this.errorHandler('POST', error);
-        }
-        return response;
     }
 
     public getData<T>(restUrl: string, httpParameter: HttpParams) {

@@ -1,4 +1,4 @@
-<div class="login-page" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px">
+<div class="register-page" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px">
   <p-toast position="top-right"></p-toast>
   <div class="blurred-box">
     <p-card>
@@ -8,18 +8,13 @@
         </div>
       </p-header>
       <app-user-input
-        (onValuesSubmitted)="login($event)"
-        buttonCaption="Login"
+        (onValuesSubmitted)="register($event)"
+        buttonCaption="Register.Register"
       ></app-user-input>
       <p-footer>
         <hr class="footer-separator">
-        <div class="login-title"><span
+        <div class="register-title"><span
           class="app-name">{{ 'App.Title' | translate}}</span><span>Version: {{appVersion}}</span>
-        </div>
-        <div class="register-section">
-          <button pButton class="register-button p-button p-ripple p-button-outlined"
-                  type="button" label="{{'Register.NewAccount' | translate}}"
-                  (click)="register()"></button>
         </div>
       </p-footer>
     </p-card>

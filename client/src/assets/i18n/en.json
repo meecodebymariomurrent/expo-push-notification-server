@@ -1,5 +1,10 @@
 {
   "App": {
     "Title": "Expo Push Notification Server"
+  },
+  "Register": {
+    "NewAccount": "Register New Account",
+    "Register": "Register",
+    "AccountCreated": "Account successfully created"
   }
 }

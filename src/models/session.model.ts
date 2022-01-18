@@ -8,7 +8,8 @@
 
 import { SessionState } from '../constants/session-state.enum';
 
-export class SessionModel {
+export class Session {
 
-    public sessionState: SessionState = SessionState.Ended;
+    constructor(public sessionState: SessionState = SessionState.Ended) {
+    }
 }

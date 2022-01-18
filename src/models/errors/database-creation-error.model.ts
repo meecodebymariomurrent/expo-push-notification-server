@@ -1,4 +1,5 @@
-export class DatabaseCreationError {
-    constructor(readonly message: string, readonly error?: unknown) {
-    }
+import { GeneralErrorModel } from './general-error.model';
+
+export class DatabaseCreationError extends GeneralErrorModel {
+
 }

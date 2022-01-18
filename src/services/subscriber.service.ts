@@ -1,8 +1,9 @@
 import { inject, injectable } from 'inversify';
 import { DatabaseTable } from '../constants/database-table.enum';
 import { DatabaseService } from './database.service';
-import { SubscriberModel } from '../models/subscriber.model';
-import { SubscriberRequestModel } from '../models/request/subscriber-request.model';
+import { Subscriber } from '../models/subscriber.model';
+import { SubscriberRequest } from '../models/request/subscriber-request.model';
+import { DatabaseCreationError } from '../models/errors/database-creation-error.model';
 
 @injectable()
 export class SubscriberService {
@@ -11,23 +12,23 @@ export class SubscriberService {
     constructor(@inject(DatabaseService.name) private databaseService: DatabaseService) {
     }
 
-    public getAll(): Promise<Array<SubscriberModel>> {
-        return this.databaseService.getAll<SubscriberModel>(this.databaseTable);
+    public getAll(): Promise<Array<Subscriber>> {
+        return this.databaseService.getAll<Subscriber>(this.databaseTable);
     }
 
-    public create(subscriber: SubscriberRequestModel): Promise<SubscriberModel> {
+    public create(subscriber: SubscriberRequest): Promise<Subscriber> {
         return new Promise((resolve, reject) => {
-            this.databaseService.add<SubscriberModel>(this.mapSubscriber(subscriber), this.databaseTable)
-                .then((response: SubscriberModel) => {
+            this.databaseService.add<Subscriber>(this.mapSubscriber(subscriber), this.databaseTable)
+                .then((response: Subscriber) => {
                     resolve(response);
                 }).catch((error) => {
-                reject(error);
+                reject(new DatabaseCreationError('Error while creating a subscriber', error));
             });
         })
     }
 
-    private mapSubscriber(subscriber: SubscriberRequestModel): SubscriberModel {
-        const subscriberModel = new SubscriberModel();
+    private mapSubscriber(subscriber: SubscriberRequest): Subscriber {
+        const subscriberModel = new Subscriber();
         subscriberModel.token = subscriber.token;
         subscriberModel.expired = false;
         subscriberModel.lastUpdate = new Date();

@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
 import { MessageSeverity } from '../../constants/primeng/message-severity.enum';
 import { AuthenticationService } from '../../services/authentication.service';
+import { sha256 } from 'js-sha256';
+import { Page } from '../../constants/page.enum';
+import { UserInputValues } from '../../models/user-input-values.model';
 
 @Component({
   selector: 'app-login-page',
@@ -14,9 +17,6 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class LoginPageComponent implements OnInit {
 
   private redirectUrl = '';
-
-  public email: string = '';
-  public password: string = '';
   public errorMessage: string = '';
   public appVersion: string = packageInfo.version;
 
@@ -33,19 +33,20 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  public async login(email: string, password: string) {
+  public async login(data: UserInputValues) {
     try {
-      const url = (await this.authenticationService.login(
-        email,
-        password,
-      )) as string;
-      this.redirectUrl = url;
+      this.redirectUrl = await this.authenticationService.login(data.username, sha256(data.password));
+      this.navigateTo(Page.Home);
     } catch (e) {
       this.errorMessage = 'Wrong Credentials!';
-      const message: Message = { severity : MessageSeverity.Error, summary: this.errorMessage};
+      const message: Message = {severity: MessageSeverity.Error, summary: this.errorMessage};
       this.messageService.add(message);
       this.logger.error('Unable to Login!\n', e);
     }
+  }
+
+  public register(): void {
+    this.navigateTo(Page.Register);
   }
 
   public navigateTo(url?: string) {

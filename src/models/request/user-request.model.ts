@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class UserRequestModel {
+export class UserRequest {
     @IsNotEmpty()
     @IsString()
     username: string;

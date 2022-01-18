@@ -5,7 +5,7 @@
  *  Written by MeeCode by Mario Murrent
  *
  */
-export class ApiErrorModel {
+export class ApiError {
     /**
      * Constructor
      *

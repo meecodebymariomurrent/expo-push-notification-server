@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginPageComponent } from './login-page.component';
 import { LogoModule } from '../../components/logo/logo.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
@@ -11,10 +10,11 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { TranslateModule } from '@ngx-translate/core';
+import { RegisterPageComponent } from './register-page.component';
 import { UserInputModule } from '../../components/user-input/user-input.module';
 
 @NgModule({
-  declarations: [LoginPageComponent],
+  declarations: [RegisterPageComponent],
   imports: [
     CommonModule,
     LogoModule,
@@ -30,5 +30,5 @@ import { UserInputModule } from '../../components/user-input/user-input.module';
     UserInputModule
   ]
 })
-export class LoginPageModule {
+export class RegisterPageModule {
 }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomePageRoutingModule } from './home-page-routing.module';
 import { HomePageComponent } from './home-page.component';
 import { LogoModule } from '../../components/logo/logo.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -17,7 +16,6 @@ import { TranslateModule } from '@ngx-translate/core';
   declarations: [HomePageComponent],
   imports: [
     CommonModule,
-    HomePageRoutingModule,
     LogoModule,
     FlexLayoutModule,
     FormsModule,

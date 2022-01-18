@@ -1,4 +1,4 @@
-.login-page {
+.register-page {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -11,12 +11,16 @@
   height: 100%;
 }
 
-
 .logo-container {
   height: auto;
   width: 80px;
   margin: auto;
   padding-top: 20px;
+}
+
+.register-field {
+  width: 100%;
+  margin-top: 10px;
 }
 
 .blurred-box {
@@ -30,7 +34,7 @@
   left: 0;
   margin: auto;
 
-  .login-title {
+  .register-title {
     font-size: 12px;
     display: flex;
     justify-content: space-between;
@@ -40,16 +44,11 @@
     }
   }
 
-  .footer-separator {
-    color: lightgrey;
-  }
-
-  .register-section {
-    padding-top: 15px;
-    text-align: center;
-  }
-
   .register-button {
     width: 100%;
+  }
+
+  .footer-separator {
+    color: lightgrey;
   }
 }
