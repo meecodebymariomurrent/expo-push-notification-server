@@ -1,4 +1,4 @@
-import { controller, httpGet, httpPost, interfaces } from 'inversify-express-utils';
+import { controller, httpDelete, httpGet, httpPost, interfaces, requestParam } from 'inversify-express-utils';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes'
 import { ApiError } from '../models/errors/api-error.model';
@@ -10,13 +10,14 @@ import { DatabaseCreationError } from '../models/errors/database-creation-error.
 import { AppIdentifierRequest } from '../models/request/app-identifier-request.model';
 import { transformAndValidate } from 'class-transformer-validator';
 import { AppIdentifierResponse } from '../models/response/app-identifier-response.model';
+import { DeleteResponse } from '../models/response/delete-response.model';
 
 @controller('/appIdentifier', JwtMiddleware.name)
 export class AppIdentifierController implements interfaces.Controller {
     constructor(@inject(AppIdentifierService.name) private appIdentifierService: AppIdentifierService,) {
     }
 
-    @httpGet('')
+    @httpGet('/')
     public async getAll(request: Request, response: Response): Promise<void> {
         try {
             const appIdentifier = await this.appIdentifierService.getAll();
@@ -44,5 +45,17 @@ export class AppIdentifierController implements interfaces.Controller {
                     .send(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
             }
         }
+    }
+
+    @httpDelete('/')
+    public deleteAppIdentifier(@requestParam('id') id: string,
+                               request: Request,
+                               response: Response): void {
+        this.appIdentifierService.deleteById(id).then(() => {
+            response.json(new DeleteResponse());
+        }).catch((error) => {
+            response.status(StatusCodes.INTERNAL_SERVER_ERROR)
+                .send(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
+        });
     }
 }

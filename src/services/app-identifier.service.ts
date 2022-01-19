@@ -27,6 +27,10 @@ export class AppIdentifierService {
         })
     }
 
+    public deleteById(id: string): Promise<boolean> {
+        return this.databaseService.deleteById<boolean>(id, this.databaseTable);
+    }
+
     private mapAppIdentifier(appIdentifier: AppIdentifierRequest): AppIdentifier {
         const appIdentifierModel = new AppIdentifier();
         appIdentifierModel.name = appIdentifier.name;

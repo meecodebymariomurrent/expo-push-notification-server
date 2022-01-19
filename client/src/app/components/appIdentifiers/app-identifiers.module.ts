@@ -8,6 +8,8 @@ import { AppIdentifiersComponent } from './app-identifiers.component';
 import { TableModule } from 'primeng/table';
 import { ToolbarModule } from 'primeng/toolbar';
 import { RippleModule } from 'primeng/ripple';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [AppIdentifiersComponent],
@@ -21,6 +23,8 @@ import { RippleModule } from 'primeng/ripple';
     TableModule,
     ToolbarModule,
     RippleModule,
+    DialogModule,
+    InputTextareaModule,
   ],
 })
 export class AppIdentifiersModule {

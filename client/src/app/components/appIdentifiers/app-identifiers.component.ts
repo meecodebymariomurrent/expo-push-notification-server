@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppIdentifier } from '../../models/app-identifier.model';
 
 @Component({
@@ -9,8 +9,11 @@ import { AppIdentifier } from '../../models/app-identifier.model';
 export class AppIdentifiersComponent implements OnInit {
 
   @Input() public appIdentifiers: Array<AppIdentifier> = new Array<AppIdentifier>();
+  @Output() public saveAppIdentifier: EventEmitter<AppIdentifier> = new EventEmitter<AppIdentifier>();
 
   public selectedAppIdentifier: Array<AppIdentifier> = new Array<AppIdentifier>();
+  public appIdentifierDialogVisible: boolean = false;
+  public appIdentifier: AppIdentifier = {} as AppIdentifier;
 
   constructor() {
   }
@@ -22,8 +25,19 @@ export class AppIdentifiersComponent implements OnInit {
 
   }
 
-  public createAppIdentifier():void{
+  public deleteAppIdentifier(): void {
 
   }
 
+  public createAppIdentifier(): void {
+    this.appIdentifierDialogVisible = true;
+  }
+
+  public closeDialog(): void {
+    this.appIdentifierDialogVisible = false;
+  }
+
+  public handleSaveAppIdentifier(): void {
+    this.saveAppIdentifier.emit(this.appIdentifier);
+  }
 }
