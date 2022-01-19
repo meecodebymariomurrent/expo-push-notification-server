@@ -1,7 +1,7 @@
 <p-toolbar styleClass="mb-4">
   <ng-template pTemplate="left">
-    <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="createAppIdentifier()"></button>
-    <button pButton pRipple label="{{'Category.Delete' | translate}}" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedAppIdentifier()" [disabled]="!selectedAppIdentifier || !selectedAppIdentifier.length"></button>
+    <button pButton pRipple label="{{'AppIdentifier.Create' | translate}}" icon="pi pi-plus" class="p-button-success mr-2" (click)="createAppIdentifier()"></button>
+    <button pButton pRipple label="{{'AppIdentifier.Delete' | translate}}" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedAppIdentifier()" [disabled]="!selectedAppIdentifier || !selectedAppIdentifier.length"></button>
   </ng-template>
 </p-toolbar>
 <p-table [value]="appIdentifiers" styleClass="p-datatable-striped" responsiveLayout="scroll" [(selection)]="selectedAppIdentifier">

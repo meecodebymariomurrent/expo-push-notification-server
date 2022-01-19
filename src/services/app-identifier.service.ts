@@ -7,7 +7,7 @@ import { AppIdentifier } from '../models/appIdentifier.model';
 
 @injectable()
 export class AppIdentifierService {
-    private readonly databaseTable = DatabaseTable.Category;
+    private readonly databaseTable = DatabaseTable.AppIdentifier;
 
     constructor(@inject(DatabaseService.name) private databaseService: DatabaseService) {
     }

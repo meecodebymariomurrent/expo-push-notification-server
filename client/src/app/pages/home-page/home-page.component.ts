@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 import { MenuItem, Message, MessageService } from 'primeng/api';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { MessageSeverity } from '../../constants/primeng/message-severity.enum';
 import { NGXLogger } from 'ngx-logger';
 import { AppIdentifierService } from '../../services/app-identifier.service';
 import { AppIdentifier } from '../../models/app-identifier.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-page',
@@ -20,25 +21,19 @@ export class HomePageComponent implements OnInit {
   public subscriber: Array<Subscriber> = new Array<Subscriber>();
   public appIdentifier: Array<AppIdentifier> = new Array<AppIdentifier>();
 
-  public items: Array<MenuItem> = [
-    {
-      label: 'Logout',
-      icon: 'pi pi-fw pi-logout',
-      command: () => {
-        this.logout();
-      }
-    },
-  ];
+  public items: Array<MenuItem> = [];
 
   constructor(private authenticationService: AuthenticationService,
               private subscriberService: SubscriberService,
               private appIdentifierService: AppIdentifierService,
               private messageService: MessageService,
+              private translateService: TranslateService,
               private logger: NGXLogger,
               private router: Router) {
   }
 
   ngOnInit(): void {
+    this.initMenuItems();
     this.fetchData();
   }
 
@@ -50,6 +45,29 @@ export class HomePageComponent implements OnInit {
   private logout(): void {
     this.authenticationService.logout();
     this.router.navigate([Page.Login]);
+  }
+
+  private showAboutInfo(): void {
+  }
+
+  private async initMenuItems(): Promise<void> {
+    this.translateService.get('Home.Menu.Logout').subscribe((translated: string) => {
+      this.items = [
+        {
+          label: this.translateService.instant('Home.Menu.Logout'),
+          icon: 'pi pi-fw pi-sign-out',
+          command: () => {
+            this.logout();
+          }
+        },
+        {
+          label: this.translateService.instant('Home.Menu.About'),
+          icon: 'pi pi-fw pi-info-circle',
+          command: () => {
+            this.showAboutInfo();
+          }
+        }]
+    });
   }
 
   private handleError(error: any): void {

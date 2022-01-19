@@ -3,6 +3,6 @@
   "tables": [
     "user",
     "subscriber",
-    "category"
+    "appIdentifier"
   ]
 }

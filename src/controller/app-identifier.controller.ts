@@ -1,4 +1,4 @@
-import { controller, httpPost, interfaces } from 'inversify-express-utils';
+import { controller, httpGet, httpPost, interfaces } from 'inversify-express-utils';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes'
 import { ApiError } from '../models/errors/api-error.model';
@@ -13,13 +13,13 @@ import { AppIdentifierResponse } from '../models/response/app-identifier-respons
 
 @controller('/appIdentifier', JwtMiddleware.name)
 export class AppIdentifierController implements interfaces.Controller {
-    constructor(@inject(AppIdentifierService.name) private categoryService: AppIdentifierService,) {
+    constructor(@inject(AppIdentifierService.name) private appIdentifierService: AppIdentifierService,) {
     }
 
-    @httpPost('')
+    @httpGet('')
     public async getAll(request: Request, response: Response): Promise<void> {
         try {
-            const appIdentifier = await this.categoryService.getAll();
+            const appIdentifier = await this.appIdentifierService.getAll();
             response.json(appIdentifier);
         } catch (error) {
             logger.error('Error retrieving all app identifier', [error]);
@@ -32,7 +32,7 @@ export class AppIdentifierController implements interfaces.Controller {
     public async create(request: Request, response: Response): Promise<void> {
         try {
             const appIdentifierData = await transformAndValidate<AppIdentifierRequest>(AppIdentifierRequest, request.body) as AppIdentifierRequest;
-            const appIdentifierResponse = await this.categoryService.create(appIdentifierData) as AppIdentifierResponse;
+            const appIdentifierResponse = await this.appIdentifierService.create(appIdentifierData) as AppIdentifierResponse;
             response.send(StatusCodes.CREATED).json(appIdentifierResponse);
         } catch (error) {
             logger.error('Error while creating app identifier', [error]);

@@ -10,7 +10,11 @@
   },
   "Home": {
     "Subscriber": "Subscriber",
-    "Categories": "Categories"
+    "AppIdentifier": "App Identifier",
+    "Menu": {
+      "Logout": "Logout",
+      "About": "About"
+    }
   },
   "Subscriber": {
     "Expired": "Expired",
@@ -20,6 +24,8 @@
     "Delete": "Delete Subscriber"
   },
   "AppIdentifier": {
-    "Name": "Name"
+    "Create": "Create New App Identifier",
+    "Name": "Name",
+    "Delete": "Delete"
   }
 }
