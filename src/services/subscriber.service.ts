@@ -31,6 +31,7 @@ export class SubscriberService {
         const subscriberModel = new Subscriber();
         subscriberModel.token = subscriber.token;
         subscriberModel.expired = false;
+        subscriberModel.appIdentifier = subscriber.appIdentifier;
         subscriberModel.lastUpdate = new Date();
         return subscriberModel;
     }

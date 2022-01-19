@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CategoryRequest {
+export class AppIdentifierRequest {
     @IsNotEmpty()
     @IsString()
     name: string;

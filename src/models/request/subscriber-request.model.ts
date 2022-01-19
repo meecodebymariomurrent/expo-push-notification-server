@@ -4,4 +4,8 @@ export class SubscriberRequest {
     @IsNotEmpty()
     @IsString()
     token: string;
+
+    @IsNotEmpty()
+    @IsString()
+    appIdentifier: string;
 }

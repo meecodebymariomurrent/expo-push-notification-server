@@ -13,7 +13,7 @@ export class JwtMiddleware extends BaseMiddleware {
             verifyAccessToken(token).then(() => {
                 next();
             }).catch((error) => {
-                return response.json(error).sendStatus(StatusCodes.UNAUTHORIZED);
+                return response.status(StatusCodes.UNAUTHORIZED).json(error);
             });
         } else {
             response.sendStatus(StatusCodes.UNAUTHORIZED);

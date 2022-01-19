@@ -7,5 +7,19 @@
     "Register": "Register",
     "AccountCreated": "Account successfully created",
     "GoToLogin": "Process to login?"
+  },
+  "Home": {
+    "Subscriber": "Subscriber",
+    "Categories": "Categories"
+  },
+  "Subscriber": {
+    "Expired": "Expired",
+    "UniqueId": "Unique Identifier",
+    "LastUpdated": "Last Updated",
+    "Token": "Token",
+    "Delete": "Delete Subscriber"
+  },
+  "AppIdentifier": {
+    "Name": "Name"
   }
 }

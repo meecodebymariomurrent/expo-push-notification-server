@@ -2,4 +2,4 @@ export * from './login.controller';
 export * from './notification.controller';
 export * from './user.controller';
 export * from './subscriber.controller';
-export * from './category.controller';
+export * from './app-identifier.controller';

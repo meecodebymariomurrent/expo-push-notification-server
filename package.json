@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "nodemon ./src/app.ts",
     "docker-build": "docker build . -t expo-notification-server --build-arg PORT=4545 --build-arg DATABASE_HOST=localhost --build-arg DATABASE_PORT=28015 --build-arg TOKEN_SECRET=5bb453d6dd3d0d91061cf6a1efd3ef847408bd8f19b5c1a90bfacc5b60e38c431173ca6d122f9b25f65f8e522d6f1cc4a6a2deb6e49633d95891d8dd6cba5072  ",
-    "docker-run-server": "docker run -d -p 4545:4545 expo-notification-server:latest"
+    "docker-run-server": "docker run --name expo-notification-server -d -p 4545:4545 expo-notification-server:latest"
   },
   "repository": {
     "type": "git",

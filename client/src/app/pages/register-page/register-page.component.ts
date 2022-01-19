@@ -42,9 +42,10 @@ export class RegisterPageComponent implements OnInit {
         detail: this.translateService.instant('Register.GoToLogin')
       });
     } catch (e) {
+      console.log(e);
       const message: Message = {severity: MessageSeverity.Error, summary: 'Error while registering user'};
       this.messageService.add(message);
-      this.logger.error('Unable to Register!\n', e);
+      this.logger.error('Unable to Register!', e);
     }
   }
 

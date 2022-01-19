@@ -13,6 +13,9 @@ import { ToastModule } from 'primeng/toast';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToolbarModule } from 'primeng/toolbar';
 import { MenuModule } from 'primeng/menu';
+import { TabViewModule } from 'primeng/tabview';
+import { SubscribersModule } from '../../components/subscribers/subscribers.module';
+import { AppIdentifiersModule } from '../../components/appIdentifiers/app-identifiers.module';
 
 @NgModule({
   declarations: [HomePageComponent],
@@ -29,7 +32,10 @@ import { MenuModule } from 'primeng/menu';
     ToastModule,
     TranslateModule,
     ToolbarModule,
-    MenuModule
+    MenuModule,
+    TabViewModule,
+    SubscribersModule,
+    AppIdentifiersModule
   ],
 })
 export class HomePageModule {

@@ -28,8 +28,7 @@ Angular Frontend
 ### Backend
 
 - [ ] Improve error handling
-- [ ] Add support for Keycloak 
-- [ ] Add support for MongoDB as alternative to RethinkDB
+- [ ] Add support for Keycloak
 
 ## Contribute
 

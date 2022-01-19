@@ -17,7 +17,7 @@ export class CrudService {
                         private logger: NGXLogger) {
   }
 
-  public getData<T>(restUrl: string, httpParameter: HttpParams) {
+  public getData<T>(restUrl: string, httpParameter = {}) {
     return this.httpClient
       .get<T>(`${this.environmentService.getBackendServerUrl()}/${restUrl}`, {
         params: httpParameter,
