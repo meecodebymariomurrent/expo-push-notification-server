@@ -5,5 +5,6 @@ export enum ApiPath{
   CreateSubscriber = 'subscriber/create',
   PublishNotification = 'notification/publish',
   AppIdentifier = 'appIdentifier',
-  CreateAppIdentifier='appIdentifier/create'
+  CreateAppIdentifier='appIdentifier/create',
+  DeleteAppIdentifier = 'appIdentifier/delete'
 }

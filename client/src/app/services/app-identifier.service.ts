@@ -35,4 +35,14 @@ export class AppIdentifierService {
       return Promise.reject(error);
     }
   }
+
+  public async delete(id: string): Promise<boolean> {
+    try {
+      await this.crudService.delete(ApiPath.DeleteAppIdentifier, id);
+      return Promise.resolve(true);
+    } catch (error) {
+      this.logger.error('Error while deleting app identifier', error);
+      return Promise.reject(error);
+    }
+  }
 }

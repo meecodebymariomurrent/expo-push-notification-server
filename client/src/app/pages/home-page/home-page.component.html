@@ -13,6 +13,10 @@
     <app-subscribers [subscribers]="subscriber"></app-subscribers>
   </p-tabPanel>
   <p-tabPanel header="{{'Home.AppIdentifier' | translate}}">
-    <app-app-identifiers [appIdentifiers]="appIdentifier"></app-app-identifiers>
+    <app-app-identifiers
+      [appIdentifiers]="appIdentifier"
+      (deleteAppIdentifier)="handleDeleteAppIdentifier($event)"
+      (saveAppIdentifier)="handleSaveAppIdentifier($event)"
+    ></app-app-identifiers>
   </p-tabPanel>
 </p-tabView>

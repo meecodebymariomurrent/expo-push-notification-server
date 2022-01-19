@@ -37,6 +37,22 @@ export class HomePageComponent implements OnInit {
     this.fetchData();
   }
 
+  public handleDeleteAppIdentifier(appIdentifier: Array<AppIdentifier>): void {
+    const deletePromises = new Array<Promise<boolean>>();
+    appIdentifier.forEach((identifier: AppIdentifier) => {
+      deletePromises.push(this.appIdentifierService.delete(identifier.id));
+    });
+    Promise.allSettled(deletePromises).then(() => {
+      this.fetchData();
+    }).catch((error) => {
+      this.logger.error('Error while deleting app identifiers', error);
+    })
+  }
+
+  public handleSaveAppIdentifier(appIdentifier: AppIdentifier): void {
+    this.fetchData();
+  }
+
   private fetchData(): void {
     this.subscriberService.getAll().then((response) => this.subscriber = response).catch((error) => this.handleError(error));
     this.appIdentifierService.getAll().then((response) => this.appIdentifier = response).catch((error) => this.handleError(error));
@@ -71,7 +87,7 @@ export class HomePageComponent implements OnInit {
   }
 
   private handleError(error: any): void {
-    const message: Message = {severity: MessageSeverity.Error, summary: 'while fetching data', data: error};
+    const message: Message = {severity: MessageSeverity.Error, summary: 'Error while fetching data', data: error};
     this.messageService.add(message);
     this.logger.error('Failed to fetch data!', error);
   }

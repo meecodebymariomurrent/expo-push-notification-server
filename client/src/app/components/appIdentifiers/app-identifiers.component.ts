@@ -10,23 +10,17 @@ export class AppIdentifiersComponent implements OnInit {
 
   @Input() public appIdentifiers: Array<AppIdentifier> = new Array<AppIdentifier>();
   @Output() public saveAppIdentifier: EventEmitter<AppIdentifier> = new EventEmitter<AppIdentifier>();
+  @Output() public deleteAppIdentifier: EventEmitter<Array<AppIdentifier>> = new EventEmitter<Array<AppIdentifier>>();
 
   public selectedAppIdentifier: Array<AppIdentifier> = new Array<AppIdentifier>();
   public appIdentifierDialogVisible: boolean = false;
   public appIdentifier: AppIdentifier = {} as AppIdentifier;
 
-  constructor() {
-  }
-
   ngOnInit(): void {
   }
 
   public deleteSelectedAppIdentifier(): void {
-
-  }
-
-  public deleteAppIdentifier(): void {
-
+   this.deleteAppIdentifier.emit(this.selectedAppIdentifier);
   }
 
   public createAppIdentifier(): void {
