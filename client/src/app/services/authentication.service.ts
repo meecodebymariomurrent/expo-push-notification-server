@@ -12,13 +12,15 @@ import { LoginResponse } from '../models/response/login-response.model';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  token: string = '';
+  private token: string = '';
+  private userId: string = '';
 
   constructor(private http: HttpClient,
               private storage: StorageService,
               private crudService: CrudService,
               private logger: NGXLogger) {
     this.token = this.storage.read(StorageKey.AUTH_TOKEN) || '';
+    this.userId = this.storage.read(StorageKey.USER_ID) || '';
   }
 
   public async login(username: string, password: string): Promise<boolean> {
@@ -27,8 +29,10 @@ export class AuthenticationService {
         username,
         password
       });
+      this.userId = response.userId;
       this.token = response.token;
       this.storage.save(StorageKey.AUTH_TOKEN, this.token);
+      this.storage.save(StorageKey.USER_ID, this.userId);
       return Promise.resolve(true);
     } catch (error) {
       this.logger.error('Error during login request', error);
@@ -38,6 +42,10 @@ export class AuthenticationService {
 
   public getToken(): string {
     return this.token;
+  }
+
+  public getUserId(): string {
+    return this.userId;
   }
 
   public logout() {

@@ -8,4 +8,5 @@
 export interface LoginResponse {
     loggedIn: boolean;
     token: string;
+    userId: string;
 }
