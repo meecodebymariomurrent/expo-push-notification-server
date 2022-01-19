@@ -1,4 +1,5 @@
 export enum DatabaseTable {
     User = 'user',
-    Subscriber = 'subscriber'
+    Subscriber = 'subscriber',
+    Category = 'category'
 }

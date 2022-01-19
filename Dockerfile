@@ -1,3 +1,9 @@
 FROM node:17
 
-WORKDIR /usr
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY src ./

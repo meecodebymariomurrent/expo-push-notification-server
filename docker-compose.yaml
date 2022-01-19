@@ -1,0 +1,20 @@
+# docker-compose.yml
+version: '3.9'
+
+services:
+  expo:
+    container_name: expo-push-notification-server
+    image: expo-push-notification-server
+    ports:
+      - "4545:4545"
+    env_file: .env
+    depends_on:
+      - rethinkdb
+  rethinkdb:
+    container_name: expo-rethink-db
+    image: rethinkdb:2.4.1
+    ports:
+      - "8081:8081"
+      - "28015:28015"
+    volumes:
+        - /opt/docker/volumes/rethinkdb/data:/data

@@ -2,6 +2,7 @@
   "databaseName": "expo-push-notification",
   "tables": [
     "user",
-    "subscriber"
+    "subscriber",
+    "category"
   ]
 }

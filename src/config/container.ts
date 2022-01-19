@@ -5,6 +5,7 @@ import { UserService } from '../services/user.service';
 import { SessionService } from '../services/session.service';
 import { SubscriberService } from '../services/subscriber.service';
 import { JwtMiddleware } from '../middleware/jwt.middleware';
+import { CategoryService } from '../services/category.service';
 
 export class ContainerConfigLoader {
     public static load(): Container {
@@ -14,6 +15,7 @@ export class ContainerConfigLoader {
         container.bind<UserService>(UserService.name).to(UserService).inSingletonScope();
         container.bind<SessionService>(SessionService.name).to(SessionService).inSingletonScope();
         container.bind<SubscriberService>(SubscriberService.name).to(SubscriberService).inSingletonScope();
+        container.bind<CategoryService>(CategoryService.name).to(CategoryService).inSingletonScope();
         container.bind<JwtMiddleware>(JwtMiddleware.name).to(JwtMiddleware);
         return container;
     }

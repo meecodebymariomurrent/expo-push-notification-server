@@ -16,6 +16,8 @@ Angular Frontend
 
 - [ ] Dockerize
 - [ ] Abstract logic to use any database 
+- [ ] Support for multiple users with different logins
+- [ ] Support for filtering notifications
 
 ### Frontend
 
@@ -33,7 +35,7 @@ Angular Frontend
 
 ## Git Commit Message Convention
 
-Please follow the conventional commits specifiction
+Please follow the conventional commits specification
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
