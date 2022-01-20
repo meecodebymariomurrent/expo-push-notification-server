@@ -1,6 +1,12 @@
 <p-toolbar styleClass="mb-4">
   <ng-template pTemplate="left">
     <button pButton pRipple
+            label="{{'Subscriber.Publish' | translate}}"
+            icon="pi pi-cloud-upload"
+            class="p-button-success p-button-outlined mr-2"
+            (click)="publishNotification()"
+            [disabled]="!selectedSubscriber || !selectedSubscriber.length"></button>
+    <button pButton pRipple
             label="{{'Subscriber.Expire' | translate}}"
             icon="pi pi-trash"
             class="p-button-danger p-button-outlined"
@@ -50,11 +56,12 @@
   </ng-template>
 
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="{{'General.Cancel' | translate}}" icon="pi pi-times" class="p-button-outlined p-button-danger"
+    <button pButton pRipple label="{{'General.Cancel' | translate}}" icon="pi pi-times"
+            class="p-button-outlined p-button-danger"
             (click)="closeDialog()"></button>
     <button pButton pRipple
-            [disabled]="notification.title && notification.title.length <= 0 && notification.message && notification.message <= 0"
-            label="{{'General.Save' | translate}}"
+            [disabled]="notification.title && notification.title.length <= 0 && notification.message && notification.message.length <= 0"
+            label="{{'Subscriber.Notify.Dialog.Publish' | translate}}"
             icon="pi pi-check"
             class="p-button-outlined p-button-success"
             (click)="handleNotifySubscriber()"></button>

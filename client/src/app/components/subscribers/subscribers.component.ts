@@ -14,7 +14,7 @@ import { NGXLogger } from 'ngx-logger';
 export class SubscribersComponent implements OnInit {
 
   @Input() public subscribers: Array<Subscriber> = new Array<Subscriber>();
-  @Output() public notificationsPublished :EventEmitter<void>= new EventEmitter<void>();
+  @Output() public notificationsPublished: EventEmitter<void> = new EventEmitter<void>();
 
   public selectedSubscriber: Array<string> = new Array<string>();
 
@@ -33,14 +33,18 @@ export class SubscribersComponent implements OnInit {
 
   }
 
+  public publishNotification(): void {
+    this.notifySubscriberDialogVisible = true;
+  }
+
   public handleNotifySubscriber(): void {
     const currentNotification = {...this.notification};
     currentNotification.subscriber = this.selectedSubscriber;
     this.notificationService.publish(currentNotification)
       .then(() => {
-      this.notificationsPublished.emit();
-      this.closeDialog();
-    }).catch((error) => {
+        this.notificationsPublished.emit();
+        this.closeDialog();
+      }).catch((error) => {
       const message: Message = {severity: MessageSeverity.Error, summary: 'Error while publishing notifications'};
       this.messageService.add(message);
       this.logger.error('Error while publishing notifications', error);

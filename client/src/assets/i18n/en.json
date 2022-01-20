@@ -27,11 +27,13 @@
     "LastUpdated": "Last Updated",
     "Token": "Token",
     "Delete": "Delete Subscriber",
+    "Publish": "Publish",
     "Notify": {
       "Dialog": {
         "Header": "Notify Subscriber",
         "Title": "Title",
-        "Message": "Message"
+        "Message": "Message",
+        "Publish": "Publish"
       }
     }
   },
