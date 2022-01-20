@@ -10,6 +10,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { RippleModule } from 'primeng/ripple';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MessageModule } from 'primeng/message';
 
 @NgModule({
   declarations: [AppIdentifiersComponent],
@@ -25,6 +26,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     RippleModule,
     DialogModule,
     InputTextareaModule,
+    MessageModule,
   ],
 })
 export class AppIdentifiersModule {

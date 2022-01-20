@@ -5,3 +5,13 @@ body {
   margin: 0 !important;
   font-family: Lato, "Helvetica Neue", sans-serif;
 }
+
+p-toolbar {
+  .p-toolbar {
+    padding: 0.7rem;
+  }
+}
+
+.p-button:disabled {
+  opacity: 0.3 !important;
+}

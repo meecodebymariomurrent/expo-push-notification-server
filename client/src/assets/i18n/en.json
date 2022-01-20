@@ -2,6 +2,10 @@
   "App": {
     "Title": "Expo Push Notification Server"
   },
+  "General": {
+    "Save": "Save",
+    "Cancel": "Cancel"
+  },
   "Register": {
     "NewAccount": "Register New Account",
     "Register": "Register",
@@ -26,6 +30,7 @@
   "AppIdentifier": {
     "Create": "Create New App Identifier",
     "Name": "Name",
-    "Delete": "Delete"
+    "Delete": "Delete",
+    "Id": "Id"
   }
 }

@@ -7,5 +7,5 @@ export class SubscriberRequest {
 
     @IsNotEmpty()
     @IsString()
-    appIdentifier: string;
+    appIdentifierId: string;
 }

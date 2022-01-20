@@ -2,6 +2,6 @@ export class Subscriber {
     token: string;
     lastUpdate: Date;
     expired: boolean;
-    appIdentifier: string;
+    appIdentifierId: string;
     userId: string;
 }

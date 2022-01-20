@@ -41,3 +41,7 @@ Please follow the conventional commits specification
 ## License
 
 See [LICENSE.md](LICENSE.md) for more information
+
+### Icons
+
+App Icon from [Smashicons](https://www.flaticon.com/authors/smashicons)

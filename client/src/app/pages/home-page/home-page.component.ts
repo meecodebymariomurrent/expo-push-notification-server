@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem, Message, MessageService } from 'primeng/api';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
@@ -10,11 +10,12 @@ import { NGXLogger } from 'ngx-logger';
 import { AppIdentifierService } from '../../services/app-identifier.service';
 import { AppIdentifier } from '../../models/app-identifier.model';
 import { TranslateService } from '@ngx-translate/core';
+import { BackendError } from '../../models/backend-error.model';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
 
@@ -42,18 +43,22 @@ export class HomePageComponent implements OnInit {
     appIdentifier.forEach((identifier: AppIdentifier) => {
       deletePromises.push(this.appIdentifierService.delete(identifier.id));
     });
-    Promise.allSettled(deletePromises).then(() => {
+    Promise.allSettled(deletePromises).then((results: Array<PromiseSettledResult<boolean>>) => {
+      const rejected = results.filter(r => r.status === 'rejected');
+      if (rejected.length > 0) {
+        const message: Message = {severity: MessageSeverity.Error, summary: 'Error while deleting app identifier(s)'};
+        this.messageService.add(message);
+        this.logger.error('Error while deleting app identifiers');
+      }
       this.fetchData();
-    }).catch((error) => {
-      this.logger.error('Error while deleting app identifiers', error);
-    })
+    });
   }
 
-  public handleSaveAppIdentifier(appIdentifier: AppIdentifier): void {
+  public handleAppIdentifierSaved(): void {
     this.fetchData();
   }
 
-  private fetchData(): void {
+  public fetchData(): void {
     this.subscriberService.getAll().then((response) => this.subscriber = response).catch((error) => this.handleError(error));
     this.appIdentifierService.getAll().then((response) => this.appIdentifier = response).catch((error) => this.handleError(error));
   }
@@ -86,8 +91,13 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  private handleError(error: any): void {
-    const message: Message = {severity: MessageSeverity.Error, summary: 'Error while fetching data', data: error};
+  private handleError(error: BackendError): void {
+    const message: Message = {
+      severity: MessageSeverity.Error,
+      summary: 'Error while fetching data',
+      data: error,
+      detail: error.message
+    };
     this.messageService.add(message);
     this.logger.error('Failed to fetch data!', error);
   }

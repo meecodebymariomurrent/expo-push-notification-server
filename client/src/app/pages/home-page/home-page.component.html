@@ -1,6 +1,8 @@
+<p-toast position="top-right"></p-toast>
 <p-toolbar>
   <div class="p-toolbar-group-left">
-    <div>{{'App.Title' | translate}}</div>
+    <app-logo [width]="'40'"></app-logo>
+    <div class="ml-3">{{'App.Title' | translate}}</div>
   </div>
 
   <div class="p-toolbar-group-right">
@@ -8,7 +10,7 @@
     <button type="button" class="p-button-outlined" pButton icon="pi pi-bars" (click)="menu.toggle($event)"></button>
   </div>
 </p-toolbar>
-<p-tabView>
+<p-tabView (activeIndexChange)="this.fetchData()">
   <p-tabPanel header="{{'Home.Subscriber' | translate}}">
     <app-subscribers [subscribers]="subscriber"></app-subscribers>
   </p-tabPanel>
@@ -16,7 +18,7 @@
     <app-app-identifiers
       [appIdentifiers]="appIdentifier"
       (deleteAppIdentifier)="handleDeleteAppIdentifier($event)"
-      (saveAppIdentifier)="handleSaveAppIdentifier($event)"
+      (appIdentifierSaved)="handleAppIdentifierSaved()"
     ></app-app-identifiers>
   </p-tabPanel>
 </p-tabView>

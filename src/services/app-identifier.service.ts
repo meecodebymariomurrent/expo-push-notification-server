@@ -16,7 +16,11 @@ export class AppIdentifierService {
         return this.databaseService.getAll<AppIdentifier>(this.databaseTable);
     }
 
-    public create(appIdentifier: AppIdentifierRequest): Promise<AppIdentifier> {
+    public async create(appIdentifier: AppIdentifierRequest): Promise<AppIdentifier> {
+        const appIdentifierExists = await this.appIdentifierExists(appIdentifier.name);
+        if (appIdentifierExists) {
+            return Promise.reject(new DatabaseCreationError('An app identifier with the given name already exists'));
+        }
         return new Promise((resolve, reject) => {
             this.databaseService.add<AppIdentifier>(this.mapAppIdentifier(appIdentifier), this.databaseTable)
                 .then((response: AppIdentifier) => {
@@ -28,12 +32,21 @@ export class AppIdentifierService {
     }
 
     public deleteById(id: string): Promise<boolean> {
-        return this.databaseService.deleteById<boolean>(id, this.databaseTable);
+        return this.databaseService.deleteById(id, this.databaseTable);
     }
 
     private mapAppIdentifier(appIdentifier: AppIdentifierRequest): AppIdentifier {
         const appIdentifierModel = new AppIdentifier();
         appIdentifierModel.name = appIdentifier.name;
+        appIdentifierModel.userId = appIdentifier.userId;
         return appIdentifierModel;
+    }
+
+    private appIdentifierExists(name: string): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            this.databaseService.filterBy<AppIdentifier>({name: name}, this.databaseTable).then((result: Array<AppIdentifier>) => {
+                resolve(result.length > 0);
+            }).catch(reject)
+        });
     }
 }

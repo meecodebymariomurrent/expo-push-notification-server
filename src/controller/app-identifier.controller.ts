@@ -25,7 +25,7 @@ export class AppIdentifierController implements interfaces.Controller {
         } catch (error) {
             logger.error('Error retrieving all app identifier', [error]);
             response.status(StatusCodes.INTERNAL_SERVER_ERROR)
-                .send(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
+                .json(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
         }
     }
 
@@ -34,7 +34,7 @@ export class AppIdentifierController implements interfaces.Controller {
         try {
             const appIdentifierData = await transformAndValidate<AppIdentifierRequest>(AppIdentifierRequest, request.body) as AppIdentifierRequest;
             const appIdentifierResponse = await this.appIdentifierService.create(appIdentifierData) as AppIdentifierResponse;
-            response.send(StatusCodes.CREATED).json(appIdentifierResponse);
+            response.status(StatusCodes.CREATED).json(appIdentifierResponse);
         } catch (error) {
             logger.error('Error while creating app identifier', [error]);
             if (error instanceof DatabaseCreationError) {
@@ -42,20 +42,21 @@ export class AppIdentifierController implements interfaces.Controller {
                     .send(new ApiError(error.message, StatusCodes.CONFLICT, error));
             } else {
                 response.status(StatusCodes.INTERNAL_SERVER_ERROR)
-                    .send(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
+                    .json(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
             }
         }
     }
 
-    @httpDelete('/')
-    public deleteAppIdentifier(@requestParam('id') id: string,
-                               request: Request,
-                               response: Response): void {
-        this.appIdentifierService.deleteById(id).then(() => {
+    @httpDelete('/:id')
+    public async deleteAppIdentifier(@requestParam('id') id: string,
+                                     request: Request,
+                                     response: Response): Promise<void> {
+        try {
+            await this.appIdentifierService.deleteById(id);
             response.json(new DeleteResponse());
-        }).catch((error) => {
+        } catch (error) {
             response.status(StatusCodes.INTERNAL_SERVER_ERROR)
-                .send(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
-        });
+                .json(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
+        }
     }
 }

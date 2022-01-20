@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppIdentifier } from '../../models/app-identifier.model';
+import { AppIdentifierService } from '../../services/app-identifier.service';
+import { Message, MessageService } from 'primeng/api';
+import { NGXLogger } from 'ngx-logger';
+import { MessageSeverity } from '../../constants/primeng/message-severity.enum';
 
 @Component({
   selector: 'app-app-identifiers',
@@ -9,18 +13,26 @@ import { AppIdentifier } from '../../models/app-identifier.model';
 export class AppIdentifiersComponent implements OnInit {
 
   @Input() public appIdentifiers: Array<AppIdentifier> = new Array<AppIdentifier>();
-  @Output() public saveAppIdentifier: EventEmitter<AppIdentifier> = new EventEmitter<AppIdentifier>();
+  @Output() public appIdentifierSaved: EventEmitter<AppIdentifier> = new EventEmitter<AppIdentifier>();
   @Output() public deleteAppIdentifier: EventEmitter<Array<AppIdentifier>> = new EventEmitter<Array<AppIdentifier>>();
 
   public selectedAppIdentifier: Array<AppIdentifier> = new Array<AppIdentifier>();
   public appIdentifierDialogVisible: boolean = false;
   public appIdentifier: AppIdentifier = {} as AppIdentifier;
 
+  constructor(private appIdentifierService: AppIdentifierService,
+              private messageService: MessageService,
+              private logger: NGXLogger) {
+
+  }
+
+
   ngOnInit(): void {
   }
 
   public deleteSelectedAppIdentifier(): void {
-   this.deleteAppIdentifier.emit(this.selectedAppIdentifier);
+    this.deleteAppIdentifier.emit(this.selectedAppIdentifier);
+    this.selectedAppIdentifier = new Array<AppIdentifier>();
   }
 
   public createAppIdentifier(): void {
@@ -32,6 +44,13 @@ export class AppIdentifiersComponent implements OnInit {
   }
 
   public handleSaveAppIdentifier(): void {
-    this.saveAppIdentifier.emit(this.appIdentifier);
+    this.appIdentifierService.create(this.appIdentifier).then(() => {
+      this.appIdentifierSaved.emit();
+      this.closeDialog();
+    }).catch((error) => {
+      const message: Message = {severity: MessageSeverity.Error, summary: 'Error while creating app identifier'};
+      this.messageService.add(message);
+      this.logger.error('Error while fetching all app identifiers', error);
+    });
   }
 }

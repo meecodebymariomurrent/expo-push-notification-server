@@ -1,12 +1,18 @@
 <p-toolbar styleClass="mb-4">
   <ng-template pTemplate="left">
-    <button pButton pRipple label="{{'Subscriber.Delete' | translate}}" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedSubscriber()" [disabled]="!selectedSubscriber || !selectedSubscriber.length"></button>
+    <button pButton pRipple
+            label="{{'Subscriber.Delete' | translate}}"
+            icon="pi pi-trash"
+            class="p-button-danger p-button-outlined"
+            (click)="deleteSelectedSubscriber()"
+            [disabled]="!selectedSubscriber || !selectedSubscriber.length"></button>
   </ng-template>
 </p-toolbar>
-<p-table [value]="subscribers" styleClass="p-datatable-striped" responsiveLayout="scroll" [(selection)]="selectedSubscriber">
+<p-table [value]="subscribers" styleClass="p-datatable-striped" responsiveLayout="scroll"
+         [(selection)]="selectedSubscriber">
   <ng-template pTemplate="header">
     <tr>
-      <th style="width: 3rem">
+      <th class="table-header-checkbox">
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
       <th>{{'Subscriber.Token' | translate}}</th>
