@@ -26,7 +26,14 @@
     "UniqueId": "Unique Identifier",
     "LastUpdated": "Last Updated",
     "Token": "Token",
-    "Delete": "Delete Subscriber"
+    "Delete": "Delete Subscriber",
+    "Notify": {
+      "Dialog": {
+        "Header": "Notify Subscriber",
+        "Title": "Title",
+        "Message": "Message"
+      }
+    }
   },
   "AppIdentifier": {
     "Create": "Create New App Identifier",

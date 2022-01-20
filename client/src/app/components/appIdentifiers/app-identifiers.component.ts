@@ -13,7 +13,7 @@ import { MessageSeverity } from '../../constants/primeng/message-severity.enum';
 export class AppIdentifiersComponent implements OnInit {
 
   @Input() public appIdentifiers: Array<AppIdentifier> = new Array<AppIdentifier>();
-  @Output() public appIdentifierSaved: EventEmitter<AppIdentifier> = new EventEmitter<AppIdentifier>();
+  @Output() public appIdentifierSaved: EventEmitter<void> = new EventEmitter<void>();
   @Output() public deleteAppIdentifier: EventEmitter<Array<AppIdentifier>> = new EventEmitter<Array<AppIdentifier>>();
 
   public selectedAppIdentifier: Array<AppIdentifier> = new Array<AppIdentifier>();
@@ -48,9 +48,9 @@ export class AppIdentifiersComponent implements OnInit {
       this.appIdentifierSaved.emit();
       this.closeDialog();
     }).catch((error) => {
-      const message: Message = {severity: MessageSeverity.Error, summary: 'Error while creating app identifier'};
+      const message: Message = {severity: MessageSeverity.Error, summary: 'Error while creating an app identifier'};
       this.messageService.add(message);
-      this.logger.error('Error while fetching all app identifiers', error);
+      this.logger.error('Error while creating an app identifier', error);
     });
   }
 }

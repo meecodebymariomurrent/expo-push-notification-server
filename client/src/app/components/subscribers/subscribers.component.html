@@ -6,12 +6,6 @@
             class="p-button-danger p-button-outlined"
             (click)="expireSelectedSubscriber()"
             [disabled]="!selectedSubscriber || !selectedSubscriber.length"></button>
-    <button pButton pRipple
-            label="{{'Subscriber.Delete' | translate}}"
-            icon="pi pi-trash"
-            class="p-button-danger p-button-outlined"
-            (click)="deleteSelectedSubscriber()"
-            [disabled]="!selectedSubscriber || !selectedSubscriber.length"></button>
   </ng-template>
 </p-toolbar>
 <p-table [value]="subscribers" styleClass="p-datatable-striped" responsiveLayout="scroll"
@@ -39,3 +33,31 @@
     </tr>
   </ng-template>
 </p-table>
+
+<p-dialog [(visible)]="notifySubscriberDialogVisible"
+          [style]="{width: '450px'}"
+          header="{{'Subscriber.Notify.Dialog.Header' | translate}}"
+          [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="field">
+      <label for="name">{{'Subscriber.Notify.Dialog.Title'}}</label>
+      <input type="text" pInputText id="name" [(ngModel)]="notification.title" required autofocus/>
+    </div>
+    <div class="field">
+      <label for="name">{{'Subscriber.Notify.Dialog.Message'}}</label>
+      <input type="text" pInputText id="message" [(ngModel)]="notification.message" required autofocus/>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="{{'General.Cancel' | translate}}" icon="pi pi-times" class="p-button-outlined p-button-danger"
+            (click)="closeDialog()"></button>
+    <button pButton pRipple
+            [disabled]="notification.title && notification.title.length <= 0 && notification.message && notification.message <= 0"
+            label="{{'General.Save' | translate}}"
+            icon="pi pi-check"
+            class="p-button-outlined p-button-success"
+            (click)="handleNotifySubscriber()"></button>
+  </ng-template>
+</p-dialog>
+
