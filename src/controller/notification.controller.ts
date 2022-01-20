@@ -7,6 +7,11 @@ import { StatusCodes } from 'http-status-codes';
 import { Expo, ExpoPushMessage } from 'expo-server-sdk';
 import { UserService } from '../services/user.service';
 import { JwtMiddleware } from '../middleware/jwt.middleware';
+import { transformAndValidate } from 'class-transformer-validator';
+import { NotificationRequest } from '../models/request/notification-request.model';
+import logger from '../utils/logger';
+import { DatabaseCreationError } from '../models/errors/database-creation-error.model';
+import { ApiError } from '../models/errors/api-error.model';
 
 @controller('/notification', JwtMiddleware.name)
 export class NotificationController implements interfaces.Controller {
@@ -19,6 +24,7 @@ export class NotificationController implements interfaces.Controller {
     @httpPost('/publish')
     public async publish(request: Request, response: Response): Promise<void> {
         try {
+            const notificationData = await transformAndValidate<NotificationRequest>(NotificationRequest, request.body) as NotificationRequest;
             const subscriber = await this.subscriberService.getAll();
             const messages = new Array<ExpoPushMessage>();
             subscriber.forEach((subscriber: Subscriber) => {
@@ -29,8 +35,8 @@ export class NotificationController implements interfaces.Controller {
                 messages.push({
                     to: subscriber.token,
                     sound: 'default',
-                    title: request.body.title,
-                    body: request.body.message,
+                    title: notificationData.title,
+                    body: notificationData.message,
                 });
 
             });
@@ -38,7 +44,9 @@ export class NotificationController implements interfaces.Controller {
             response.json({message: receipt});
             response.sendStatus(StatusCodes.OK)
         } catch (error) {
-
+            logger.error('Error while publishing notification', [error]);
+            response.status(StatusCodes.INTERNAL_SERVER_ERROR)
+                .send(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
         }
     }
 }

@@ -18,12 +18,17 @@ Angular Frontend
 - [ ] Abstract logic to use any database 
 - [ ] Support for multiple users with different logins
 - [ ] Support for filtering notifications
+  - [ ] by expiration
+  - [ ] by app identifier
+- [ ] Support for user groups
 
 ### Frontend
 
 - [ ] Global navigation logic
 - [ ] Add more translations
   - [ ] German
+- [ ] Add settings page
+  - [ ] Add button to open settings page to right menu
 
 ### Backend
 
