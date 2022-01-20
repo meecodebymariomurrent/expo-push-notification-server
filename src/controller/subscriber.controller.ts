@@ -1,4 +1,4 @@
-import { controller, httpGet, httpPost, interfaces } from 'inversify-express-utils';
+import { controller, httpGet, httpPost, interfaces, requestParam } from 'inversify-express-utils';
 import { Request, Response } from 'express';
 import { inject } from 'inversify';
 import { SubscriberService } from '../services/subscriber.service';
@@ -32,6 +32,26 @@ export class SubscriberController implements interfaces.Controller {
         try {
             const subscriberData = request.body as SubscriberRequest;
             const subscriber = await this.subscriberService.create(subscriberData) as SubscriberResponse;
+            response.status(StatusCodes.OK).send(subscriber);
+        } catch (error) {
+            logger.error('Error while creating subscriber', [error]);
+            if (error instanceof DatabaseCreationError) {
+                response.status(StatusCodes.CONFLICT)
+                    .send(new ApiError(error.message, StatusCodes.CONFLICT, error));
+            } else {
+                response.status(StatusCodes.INTERNAL_SERVER_ERROR)
+                    .send(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
+            }
+        }
+    }
+
+    @httpPost('/:id')
+    public async updateSubscriber(@requestParam('id') id: string,
+                                  request: Request,
+                                  response: Response): Promise<void> {
+        try {
+            const subscriberData = request.body as SubscriberRequest;
+            const subscriber = await this.subscriberService.update(subscriberData, id) as SubscriberResponse;
             response.status(StatusCodes.OK).send(subscriber);
         } catch (error) {
             logger.error('Error while creating subscriber', [error]);

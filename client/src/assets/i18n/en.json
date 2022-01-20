@@ -21,6 +21,7 @@
     }
   },
   "Subscriber": {
+    "Expire": "Expire Subscriber",
     "Expired": "Expired",
     "UniqueId": "Unique Identifier",
     "LastUpdated": "Last Updated",

@@ -21,4 +21,8 @@ export class SubscribersComponent implements OnInit {
   public deleteSelectedSubscriber(): void {
 
   }
+
+  public expireSelectedSubscriber(): void {
+
+  }
 }

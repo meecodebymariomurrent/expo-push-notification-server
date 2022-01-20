@@ -1,6 +1,12 @@
 <p-toolbar styleClass="mb-4">
   <ng-template pTemplate="left">
     <button pButton pRipple
+            label="{{'Subscriber.Expire' | translate}}"
+            icon="pi pi-trash"
+            class="p-button-danger p-button-outlined"
+            (click)="expireSelectedSubscriber()"
+            [disabled]="!selectedSubscriber || !selectedSubscriber.length"></button>
+    <button pButton pRipple
             label="{{'Subscriber.Delete' | translate}}"
             icon="pi pi-trash"
             class="p-button-danger p-button-outlined"

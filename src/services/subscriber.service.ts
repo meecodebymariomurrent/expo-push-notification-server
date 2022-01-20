@@ -24,7 +24,18 @@ export class SubscriberService {
                 }).catch((error) => {
                 reject(new DatabaseCreationError('Error while creating a subscriber', error));
             });
-        })
+        });
+    }
+
+    public update(subscriber: SubscriberRequest, subscriberId: string): Promise<Subscriber> {
+        return new Promise<Subscriber>((resolve, reject) => {
+            this.databaseService.update<Subscriber>(subscriberId, this.mapSubscriber(subscriber), this.databaseTable)
+                .then((response: Subscriber) => {
+                    resolve(response);
+                }).catch((error) => {
+                reject(new DatabaseCreationError('Error while updaing a subscriber', error));
+            });
+        });
     }
 
     private mapSubscriber(subscriber: SubscriberRequest): Subscriber {
