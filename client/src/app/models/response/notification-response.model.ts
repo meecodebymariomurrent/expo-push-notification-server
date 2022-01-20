@@ -1,3 +1,3 @@
 export interface NotificationResponse {
-  success: boolean;
+  message: Array<unknown>;
 }

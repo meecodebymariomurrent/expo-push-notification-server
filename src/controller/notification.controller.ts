@@ -10,8 +10,8 @@ import { JwtMiddleware } from '../middleware/jwt.middleware';
 import { transformAndValidate } from 'class-transformer-validator';
 import { NotificationRequest } from '../models/request/notification-request.model';
 import logger from '../utils/logger';
-import { DatabaseCreationError } from '../models/errors/database-creation-error.model';
 import { ApiError } from '../models/errors/api-error.model';
+import { NotificationResponse } from '../models/response/notification-response.model';
 
 @controller('/notification', JwtMiddleware.name)
 export class NotificationController implements interfaces.Controller {
@@ -41,7 +41,8 @@ export class NotificationController implements interfaces.Controller {
 
             });
             const receipt = await this.expoClient.sendPushNotificationsAsync(messages);
-            response.json({message: receipt});
+            const responseData = {message: receipt} as NotificationResponse;
+            response.json(responseData);
             response.sendStatus(StatusCodes.OK)
         } catch (error) {
             logger.error('Error while publishing notification', [error]);
