@@ -5,7 +5,7 @@
 ### Creating an app identifier
 
 Start with creating an app identifier in the Expo Push Notification Server UI.
-An app identifier is needed for subscriber to register and for the user to specifiy for which subscriber the push notifications should be sent out.
+An app identifier is needed for subscriber to register and for the user to specify for which subscriber the push notifications should be sent out.
 
 ### Registering a subscriber
 
@@ -30,12 +30,14 @@ The expo push notification token received via:
 
 The app identifier created via the Expo Push Notification Server UI
 
+### Expo Util Example
+
 See [Expo App Notification Example](examples/expo/NOTIFICATION.md) for a full example.
 After successful registration of a subscriber you should see the subscriber in the list on the Expo Push Notification Server UI.
 
 ### Sending push notifications
 
-Push notifications can be sent to selected subscribers. 
+Push notifications can be sent to selected or all subscribers. 
 Therefore, you need to log in to the Expo Push Notification Server UI.
 
 ## Server
@@ -63,6 +65,8 @@ Angular Frontend
 See [TODO.md](TODO.md) for more information
 
 ## Contribute
+
+Feel free to contribute, either via opening an Issue on GitHub or actively join the development.
 
 ## Git Commit Message Convention
 
