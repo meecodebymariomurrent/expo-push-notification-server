@@ -21,6 +21,8 @@ Angular Frontend
   - [ ] by expiration
   - [ ] by app identifier
 - [ ] Support for user groups
+- [ ] Schedule notifications
+- [ ] Recurring notifications
 
 ### Frontend
 
