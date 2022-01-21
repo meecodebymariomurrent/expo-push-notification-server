@@ -40,7 +40,7 @@ export class UserService {
         return new Promise<boolean>((resolve, reject) => {
             this.databaseService.filterBy<User>({username: username}, this.databaseTable).then((result: Array<User>) => {
                 resolve(result.length > 0);
-            }).catch(reject)
+            }).catch(reject);
         });
     }
 

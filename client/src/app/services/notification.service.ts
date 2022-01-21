@@ -30,6 +30,7 @@ export class NotificationService {
 
   private createNotificationRequest(notification: Notification): NotificationRequest {
     return {
+      title: notification.title,
       message: notification.message,
       subscriber: notification.subscriber,
     } as NotificationRequest;

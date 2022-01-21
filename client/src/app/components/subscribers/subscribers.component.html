@@ -33,7 +33,7 @@
         <p-tableCheckbox [value]="subscriber"></p-tableCheckbox>
       </td>
       <td>{{subscriber.token}}</td>
-      <td>{{subscriber.appIdentifier}}</td>
+      <td>{{subscriber.appIdentifierId}}</td>
       <td>{{subscriber.lastUpdate}}</td>
       <td>{{subscriber.expired}}</td>
     </tr>
@@ -46,11 +46,11 @@
           [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <div class="field">
-      <label for="name">{{'Subscriber.Notify.Dialog.Title'}}</label>
+      <label for="name">{{'Subscriber.Notify.Dialog.Title' | translate}}</label>
       <input type="text" pInputText id="name" [(ngModel)]="notification.title" required autofocus/>
     </div>
     <div class="field">
-      <label for="name">{{'Subscriber.Notify.Dialog.Message'}}</label>
+      <label for="name">{{'Subscriber.Notify.Dialog.Message' | translate}}</label>
       <input type="text" pInputText id="message" [(ngModel)]="notification.message" required autofocus/>
     </div>
   </ng-template>

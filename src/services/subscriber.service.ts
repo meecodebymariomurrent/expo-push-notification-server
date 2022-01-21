@@ -4,6 +4,7 @@ import { DatabaseService } from './database.service';
 import { Subscriber } from '../models/subscriber.model';
 import { SubscriberRequest } from '../models/request/subscriber-request.model';
 import { DatabaseCreationError } from '../models/errors/database-creation-error.model';
+import { ExistingEntity } from '../models/existingEntity.model';
 
 @injectable()
 export class SubscriberService {
@@ -16,7 +17,20 @@ export class SubscriberService {
         return this.databaseService.getAll<Subscriber>(this.databaseTable);
     }
 
-    public create(subscriber: SubscriberRequest): Promise<Subscriber> {
+    public async isRegistered(subscriber: SubscriberRequest): Promise<ExistingEntity<Subscriber>> {
+        try {
+            const subscriberExists = await this.subscriberExists(subscriber.token);
+            return Promise.resolve(subscriberExists);
+        } catch (error) {
+            return Promise.reject('Error while checking if the subscriber already exists');
+        }
+    }
+
+    public async create(subscriber: SubscriberRequest): Promise<Subscriber> {
+        const subscriberExists = await this.subscriberExists(subscriber.token);
+        if (subscriberExists.exists) {
+            return Promise.reject(new DatabaseCreationError('A subscriber with the given token already exists'));
+        }
         return new Promise((resolve, reject) => {
             this.databaseService.add<Subscriber>(this.mapSubscriber(subscriber), this.databaseTable)
                 .then((response: Subscriber) => {
@@ -33,8 +47,20 @@ export class SubscriberService {
                 .then((response: Subscriber) => {
                     resolve(response);
                 }).catch((error) => {
-                reject(new DatabaseCreationError('Error while updaing a subscriber', error));
+                reject(new DatabaseCreationError('Error while creating a subscriber', error));
             });
+        });
+    }
+
+    private subscriberExists(token: string): Promise<ExistingEntity<Subscriber>> {
+        return new Promise<ExistingEntity<Subscriber>>((resolve, reject) => {
+            this.databaseService.filterBy<Subscriber>({token: token}, this.databaseTable).then((result: Array<Subscriber>) => {
+                if (result.length > 0) {
+                    resolve(new ExistingEntity(true, result[0]));
+                } else {
+                    resolve(new ExistingEntity(false));
+                }
+            }).catch(reject);
         });
     }
 

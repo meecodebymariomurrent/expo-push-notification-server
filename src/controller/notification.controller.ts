@@ -42,8 +42,7 @@ export class NotificationController implements interfaces.Controller {
             });
             const receipt = await this.expoClient.sendPushNotificationsAsync(messages);
             const responseData = {message: receipt} as NotificationResponse;
-            response.json(responseData);
-            response.sendStatus(StatusCodes.OK)
+            response.status(StatusCodes.OK).json(responseData);
         } catch (error) {
             logger.error('Error while publishing notification', [error]);
             response.status(StatusCodes.INTERNAL_SERVER_ERROR)
