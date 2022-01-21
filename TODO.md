@@ -2,6 +2,7 @@
 
 ## General
 
+- [ ] Support for iOS/Android specific notification properties
 - [ ] Dockerize
 - [ ] Abstract logic to use any database
 - [ ] Support for multiple users with different logins

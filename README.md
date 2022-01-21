@@ -1,5 +1,38 @@
 # Expo Push Notification Server with Angular PrimeNG UI
 
+## General
+
+### Registering a subscriber
+
+A client (using the Expo SDK) can register as subscriber.
+Therefore, you need to log in to the Expo Push Notification Server UI.
+
+To register a subscriber send a request to the `subcriber/create` endpoint with the following payload:
+
+```javascript
+{
+  token: "expo-push-notification-token",
+  appIdentifierId: "your-app-identifier"
+}
+```
+
+#### Token:
+
+The expo push notification token received via:
+
+`Notifications.getExpoPushTokenAsync({ experienceId: experienceId })).data;`
+
+#### appIdentifierId
+
+The app identifier created via the Expo Push Notification Server UI
+
+See [Expo App Notification Example](examples/expo/NOTIFICATION.md) for a full example.
+
+### Sending push notifications
+
+Push notifications can be sent to selected subscribers. 
+Therefore, you need to log in to the Expo Push Notification Server UI.
+
 ## Server
 
 NodeJS Typescript server based on [expressJS](https://expressjs.com/)
@@ -8,9 +41,17 @@ NodeJS Typescript server based on [expressJS](https://expressjs.com/)
 
 - Existing [RethinkDB](https://rethinkdb.com/docs/install/)
 
+### Starting the server
+
+`npm run start`
+
 ## Frontend
 
 Angular Frontend
+
+### Starting the frontend
+
+`ng serve`
 
 ## ToDos
 
