@@ -67,6 +67,7 @@ See [TODO.md](TODO.md) for more information
 ## Contribute
 
 Feel free to contribute, either via opening an Issue on GitHub or actively join the development.
+This project is by far not finished and there are a lot of things to do.
 
 ## Git Commit Message Convention
 
