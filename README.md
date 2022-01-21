@@ -2,10 +2,14 @@
 
 ## General
 
+### Creating an app identifier
+
+Start with creating an app identifier in the Expo Push Notification Server UI.
+An app identifier is needed for subscriber to register and for the user to specifiy for which subscriber the push notifications should be sent out.
+
 ### Registering a subscriber
 
 A client (using the Expo SDK) can register as subscriber.
-Therefore, you need to log in to the Expo Push Notification Server UI.
 
 To register a subscriber send a request to the `subcriber/create` endpoint with the following payload:
 
@@ -27,6 +31,7 @@ The expo push notification token received via:
 The app identifier created via the Expo Push Notification Server UI
 
 See [Expo App Notification Example](examples/expo/NOTIFICATION.md) for a full example.
+After successful registration of a subscriber you should see the subscriber in the list on the Expo Push Notification Server UI.
 
 ### Sending push notifications
 
