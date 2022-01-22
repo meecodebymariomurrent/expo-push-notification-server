@@ -17,18 +17,6 @@ export class AppIdentifierController implements interfaces.Controller {
     constructor(@inject(AppIdentifierService.name) private appIdentifierService: AppIdentifierService,) {
     }
 
-    @httpGet('/')
-    public async getAll(request: Request, response: Response): Promise<void> {
-        try {
-            const appIdentifier = await this.appIdentifierService.getAll();
-            response.json(appIdentifier);
-        } catch (error) {
-            logger.error('Error retrieving all app identifier', [error]);
-            response.status(StatusCodes.INTERNAL_SERVER_ERROR)
-                .json(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
-        }
-    }
-
     @httpPost('/create')
     public async create(request: Request, response: Response): Promise<void> {
         try {

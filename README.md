@@ -60,6 +60,14 @@ Angular Frontend
 
 `ng serve`
 
+### Running via Docker
+
+You can use the DockerFile to create a Docker image for the Expo Push Notification Server which includes both the server and the UI.
+
+- Run `npm run build` in the `client` directory. This command will build the frontend and copy the generated build into the `public` folder.
+- Run `npm run docker-build` from the root directory to build the docker image
+- Run `npm run docker-run-server` from the root directory to start the container
+
 ## ToDos
 
 See [TODO.md](TODO.md) for more information

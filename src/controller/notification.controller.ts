@@ -25,7 +25,7 @@ export class NotificationController implements interfaces.Controller {
     public async publish(request: Request, response: Response): Promise<void> {
         try {
             const notificationData = await transformAndValidate<NotificationRequest>(NotificationRequest, request.body) as NotificationRequest;
-            const subscriber = await this.subscriberService.getAll();
+            const subscriber = await this.subscriberService.get(notificationData.subscriber);
             const messages = new Array<ExpoPushMessage>();
             subscriber.forEach((subscriber: Subscriber) => {
                 if (!Expo.isExpoPushToken(subscriber.token)) {
@@ -38,7 +38,6 @@ export class NotificationController implements interfaces.Controller {
                     title: notificationData.title,
                     body: notificationData.message,
                 });
-
             });
             const receipt = await this.expoClient.sendPushNotificationsAsync(messages);
             const responseData = {message: receipt} as NotificationResponse;

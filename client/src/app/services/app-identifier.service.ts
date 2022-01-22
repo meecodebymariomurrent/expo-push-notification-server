@@ -23,7 +23,8 @@ export class AppIdentifierService {
 
   public async getAll(): Promise<Array<AppIdentifier>> {
     try {
-      return lastValueFrom(this.crudService.getData<Array<AppIdentifier>>(ApiPath.AppIdentifier));
+      const requestPath = ApiPath.AppIdentifier.replace('${id}', this.authenticationService.getUserId());
+      return lastValueFrom(this.crudService.getData<Array<AppIdentifier>>(requestPath));
     } catch (error) {
       const message: Message = {
         severity: MessageSeverity.Error,

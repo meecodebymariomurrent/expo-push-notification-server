@@ -1,9 +1,9 @@
 export enum ApiPath{
   Login = 'login',
   Register = 'user/create',
-  Subscriber= 'subscriber',
+  Subscriber= 'user/${id}/subscriber',
   CreateSubscriber = 'subscriber/create',
   PublishNotification = 'notification/publish',
-  AppIdentifier = 'appIdentifier',
+  AppIdentifier = 'user/${id}/appIdentifier',
   CreateAppIdentifier='appIdentifier/create',
 }

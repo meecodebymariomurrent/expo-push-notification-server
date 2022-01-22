@@ -31,7 +31,7 @@ export class AuthenticationService {
                 loginResponse.loggedIn = true;
                 loginResponse.token = token;
                 loginResponse.userId = user.id;
-                const session: Session = this.sessionService.startSession(user.username, token);
+                const session: Session = this.sessionService.startSession(user, token);
                 if (session.sessionState === SessionState.Active) {
                     return Promise.resolve(loginResponse);
                 }

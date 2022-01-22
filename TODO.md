@@ -5,7 +5,7 @@
 - [ ] Support for iOS/Android specific notification properties
 - [ ] Dockerize
 - [ ] Abstract logic to use any database
-- [ ] Support for multiple users with different logins
+- [x] Support for multiple users with different logins
 - [ ] Support for filtering notifications
     - [ ] by expiration
     - [ ] by app identifier

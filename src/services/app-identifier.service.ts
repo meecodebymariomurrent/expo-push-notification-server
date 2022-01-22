@@ -12,8 +12,8 @@ export class AppIdentifierService {
     constructor(@inject(DatabaseService.name) private databaseService: DatabaseService) {
     }
 
-    public getAll(): Promise<Array<AppIdentifier>> {
-        return this.databaseService.getAll<AppIdentifier>(this.databaseTable);
+    public getAll(userId: string): Promise<Array<AppIdentifier>> {
+        return this.databaseService.filterBy<AppIdentifier>({userId: userId}, this.databaseTable);
     }
 
     public async create(appIdentifier: AppIdentifierRequest): Promise<AppIdentifier> {

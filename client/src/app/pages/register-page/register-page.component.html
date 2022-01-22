@@ -1,8 +1,8 @@
 <p-toast position="bottom-center" key="registered-message" (onClose)="onReject()" [baseZIndex]="5000">
   <ng-template let-message pTemplate="message">
-    <div class="p-flex p-flex-column" style="flex: 1">
+    <div class="p-flex p-flex-column registered-message-wrapper">
       <div class="p-text-center">
-        <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+        <i class="pi pi-info-circle registered-message-text"></i>
         <h4>{{message.summary}}</h4>
         <p>{{message.detail}}</p>
       </div>

@@ -97,6 +97,25 @@ export class DatabaseService {
         });
     }
 
+    public filterByIds<T>(ids: Array<string>, property: string, table: string): Promise<Array<T>> {
+        return new Promise((resolve, reject) => {
+            this.connect().then((connection: Connection) => {
+                r.db(this.getDatabaseName())
+                    .table(table)
+                    .filter(entry => r.expr(ids).contains(entry(property)))
+                    .run(connection).then((response: Array<T>) => {
+                    resolve(response);
+                }).catch((error) => {
+                    logger.error(error);
+                    reject();
+                });
+            }).catch((error) => {
+                logger.error('Error while obtaining connection');
+                reject(error);
+            });
+        });
+    }
+
     public getAll<T>(databaseTable: string): Promise<Array<T>> {
         return new Promise<Array<T>>((resolve, reject) => {
             this.connect().then((connection: Connection) => {

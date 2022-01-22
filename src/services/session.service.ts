@@ -9,6 +9,7 @@ import 'reflect-metadata';
 import { injectable } from 'inversify';
 import { Session } from '../models/session.model';
 import { SessionState } from '../constants/session-state.enum';
+import { User } from '../models/user.model';
 
 @injectable()
 export class SessionService {
@@ -28,14 +29,14 @@ export class SessionService {
     /**
      * Starts the session for a user
      *
-     * @param username the username to use
+     * @param user the user to use
      * @param token the token to use
      * @returns {Session} the session model
      */
-    public startSession(username: string, token: string): Session {
+    public startSession(user: User, token: string): Session {
         const session = new Session();
         if (!this.sessions.has(token)) {
-            this.sessions.set(token, username);
+            this.sessions.set(token, user.id);
         }
         session.sessionState = SessionState.Active;
         return session;

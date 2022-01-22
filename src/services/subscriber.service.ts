@@ -13,8 +13,12 @@ export class SubscriberService {
     constructor(@inject(DatabaseService.name) private databaseService: DatabaseService) {
     }
 
-    public getAll(): Promise<Array<Subscriber>> {
-        return this.databaseService.getAll<Subscriber>(this.databaseTable);
+    public getAll(userId: string): Promise<Array<Subscriber>> {
+        return this.databaseService.filterBy<Subscriber>({userId: userId}, this.databaseTable);
+    }
+
+    public get(ids: Array<string>, property = 'id'):Promise<Array<Subscriber>>{
+        return this.databaseService.filterByIds<Subscriber>(ids, property, this.databaseTable);
     }
 
     public async isRegistered(subscriber: SubscriberRequest): Promise<ExistingEntity<Subscriber>> {
