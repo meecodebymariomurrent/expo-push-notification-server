@@ -27,7 +27,7 @@ export class AuthenticationService {
             const loginResponse = {} as LoginResponse;
             const user: User = await this.userService.getByUsername(loginData.username);
             if (user.password === loginData.password) {
-                const token = await generateAccessToken(loginData.username);
+                const token = await generateAccessToken(user);
                 loginResponse.loggedIn = true;
                 loginResponse.token = token;
                 loginResponse.userId = user.id;

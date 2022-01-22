@@ -13,7 +13,6 @@ export class DatabaseService {
         try {
             this.connection = await this.connect();
             return new Promise<boolean>((resolve, reject) => {
-
                 r.dbList()
                     .contains(this.getDatabaseName())
                     .do((containsDatabase: RDatum<boolean>) => {
