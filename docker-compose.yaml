@@ -7,7 +7,6 @@ services:
     image: expo-push-notification-server
     ports:
       - "4545:4545"
-    env_file: .env
     depends_on:
       - rethinkdb
   rethinkdb:

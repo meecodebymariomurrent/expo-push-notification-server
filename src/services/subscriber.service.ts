@@ -17,7 +17,7 @@ export class SubscriberService {
         return this.databaseService.filterBy<Subscriber>({userId: userId}, this.databaseTable);
     }
 
-    public get(ids: Array<string>, property = 'id'):Promise<Array<Subscriber>>{
+    public get(ids: Array<string>, property = 'id'): Promise<Array<Subscriber>> {
         return this.databaseService.filterByIds<Subscriber>(ids, property, this.databaseTable);
     }
 

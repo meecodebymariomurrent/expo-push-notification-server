@@ -25,7 +25,7 @@ export class NotificationController implements interfaces.Controller {
     public async publish(request: Request, response: Response): Promise<void> {
         try {
             const notificationData = await transformAndValidate<NotificationRequest>(NotificationRequest, request.body) as NotificationRequest;
-            const subscriber = await this.subscriberService.get(notificationData.subscriber);
+            const subscriber = await this.subscriberService.get(notificationData.subscriber, 'token');
             const messages = new Array<ExpoPushMessage>();
             subscriber.forEach((subscriber: Subscriber) => {
                 if (!Expo.isExpoPushToken(subscriber.token)) {
