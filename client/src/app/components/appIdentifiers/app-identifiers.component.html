@@ -10,7 +10,9 @@
             [disabled]="!selectedAppIdentifier || !selectedAppIdentifier.length"></button>
   </ng-template>
 </p-toolbar>
-<p-table [value]="appIdentifiers" styleClass="p-datatable-striped" responsiveLayout="scroll"
+<p-table [value]="appIdentifiers" styleClass="p-datatable-striped"
+         scrollDirection="vertical"
+         scrollHeight="flex"
          [(selection)]="selectedAppIdentifier">
   <ng-template pTemplate="header">
     <tr>
@@ -44,7 +46,8 @@
   </ng-template>
 
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="{{'General.Cancel' | translate}}" icon="pi pi-times" class="p-button-outlined p-button-danger"
+    <button pButton pRipple label="{{'General.Cancel' | translate}}" icon="pi pi-times"
+            class="p-button-outlined p-button-danger"
             (click)="closeDialog()"></button>
     <button pButton pRipple
             [disabled]="appIdentifier.name && appIdentifier.name.length <= 0"

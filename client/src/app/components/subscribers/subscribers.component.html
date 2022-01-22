@@ -14,8 +14,11 @@
             [disabled]="!selectedSubscriber || !selectedSubscriber.length"></button>
   </ng-template>
 </p-toolbar>
-<p-table [value]="subscribers" styleClass="p-datatable-striped" responsiveLayout="scroll"
-         [(selection)]="selectedSubscriber">
+<p-table [value]="subscribers"
+         styleClass="p-datatable-striped"
+         scrollDirection="vertical"
+         [(selection)]="selectedSubscriber"
+         scrollHeight="flex">
   <ng-template pTemplate="header">
     <tr>
       <th class="table-header-checkbox">
@@ -29,7 +32,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-subscriber>
     <tr>
-      <td>
+      <td class="table-data-checkbox">
         <p-tableCheckbox [value]="subscriber"></p-tableCheckbox>
       </td>
       <td>{{subscriber.token}}</td>

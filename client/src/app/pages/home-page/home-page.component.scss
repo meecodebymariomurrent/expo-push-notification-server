@@ -1,0 +1,21 @@
+
+p-tabView {
+  bottom: 3rem;
+}
+
+p-toolbar.main-toolbar {
+  .p-toolbar {
+    padding: 0.7rem;
+    background-color: #2E4959;
+    border-radius: 0;
+    color: white;
+  }
+
+  .toolbar-button {
+    color: white;
+  }
+
+  .toolbar-button:hover {
+    color: #F2CB05 !important;
+  }
+}

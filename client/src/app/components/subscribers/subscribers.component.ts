@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Subscriber } from '../../models/subscriber.model';
 import { Notification } from '../../models/notification.model';
 import { NotificationService } from '../../services/notification.service';
@@ -9,7 +9,8 @@ import { NGXLogger } from 'ngx-logger';
 @Component({
   selector: 'app-subscribers',
   templateUrl: './subscribers.component.html',
-  styleUrls: ['./subscribers.component.scss']
+  styleUrls: ['./subscribers.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SubscribersComponent implements OnInit {
 

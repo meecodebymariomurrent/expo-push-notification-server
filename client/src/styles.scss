@@ -9,9 +9,14 @@ body {
 p-toolbar {
   .p-toolbar {
     padding: 0.7rem;
+    border-radius: 0;
   }
 }
 
 .p-button:disabled {
   opacity: 0.3 !important;
+}
+
+.p-tabview .p-tabview-panels {
+  padding: 0;
 }

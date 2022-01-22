@@ -16,6 +16,7 @@ import { MenuModule } from 'primeng/menu';
 import { TabViewModule } from 'primeng/tabview';
 import { SubscribersModule } from '../../components/subscribers/subscribers.module';
 import { AppIdentifiersModule } from '../../components/appIdentifiers/app-identifiers.module';
+import { FooterModule } from '../../components/footer/footer.module';
 
 @NgModule({
   declarations: [HomePageComponent],
@@ -35,7 +36,8 @@ import { AppIdentifiersModule } from '../../components/appIdentifiers/app-identi
     MenuModule,
     TabViewModule,
     SubscribersModule,
-    AppIdentifiersModule
+    AppIdentifiersModule,
+    FooterModule
   ],
 })
 export class HomePageModule {

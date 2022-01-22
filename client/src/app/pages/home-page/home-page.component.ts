@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MenuItem, Message, MessageService } from 'primeng/api';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
@@ -16,6 +16,7 @@ import { BackendError } from '../../models/backend-error.model';
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomePageComponent implements OnInit {
 
@@ -59,8 +60,12 @@ export class HomePageComponent implements OnInit {
   }
 
   public fetchData(): void {
-    this.subscriberService.getAll().then((response) => this.subscriber = response).catch((error) => this.handleError(error));
-    this.appIdentifierService.getAll().then((response) => this.appIdentifier = response).catch((error) => this.handleError(error));
+    this.subscriberService.getAll()
+      .then((response) => this.subscriber = response)
+      .catch((error) => this.handleError(error));
+    this.appIdentifierService.getAll()
+      .then((response) => this.appIdentifier = response)
+      .catch((error) => this.handleError(error));
   }
 
   private logout(): void {
