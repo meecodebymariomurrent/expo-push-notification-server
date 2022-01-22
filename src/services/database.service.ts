@@ -3,6 +3,7 @@ import { Connection, r, RConnectionOptions, RDatum } from 'rethinkdb-ts';
 import logger from '../utils/logger';
 import * as databaseConfiguration from '../config/database-configuration.json';
 import * as _ from 'lodash';
+import { DatabaseTable } from '../constants/database-table.enum';
 
 @injectable()
 export class DatabaseService {
@@ -12,31 +13,30 @@ export class DatabaseService {
     public async initialize(): Promise<boolean> {
         try {
             this.connection = await this.connect();
-            return new Promise<boolean>((resolve, reject) => {
-                r.dbList()
-                    .contains(this.getDatabaseName())
-                    .do((containsDatabase: RDatum<boolean>) => {
-                        return r.branch(
-                            containsDatabase,
-                            {created: 0},
-                            r.dbCreate(this.getDatabaseName())
-                        );
-                    })
-                    .run(this.connection)
-                    .then(() => {
-                        this.createTables(this.connection)
-                            .then(() => {
-                                resolve(true);
-                            })
-                            .catch((error) => {
-                                logger.error(error);
-                                reject(false);
-                            });
-                    });
-            });
+            return this.initDatabase(this.connection);
         } catch (error) {
             logger.error('Error while connecting to the database', error);
             return Promise.reject('An error occurred while initializing the database');
+        }
+    }
+
+    private async initDatabase(connection: Connection): Promise<boolean> {
+        try {
+            await r.dbList()
+                .contains(this.getDatabaseName())
+                .do((containsDatabase: RDatum<boolean>) => {
+                    return r.branch(
+                        containsDatabase,
+                        {created: 0},
+                        r.dbCreate(this.getDatabaseName())
+                    );
+                })
+                .run(connection)
+            await this.createTables(connection);
+            await this.addAdminUser(connection);
+            return Promise.resolve(true);
+        } catch (error) {
+            return Promise.reject(error);
         }
     }
 
@@ -272,6 +272,35 @@ export class DatabaseService {
                     logger.error(error);
                     reject(false);
                 });
+        });
+    }
+
+    private addAdminUser(connection: Connection): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            r.db(databaseConfiguration.databaseName)
+                .table(DatabaseTable.User)
+                .filter(e => e.username === databaseConfiguration.adminUserName)
+                .isEmpty()
+                .do((empty: RDatum<boolean>) => {
+                    return r.branch(
+                        empty,
+                        r.db(databaseConfiguration.databaseName).table(DatabaseTable.User)
+                            .insert({
+                                username: databaseConfiguration.adminUserName,
+                                password: databaseConfiguration.adminPassword
+                            }),
+                        {create: 1},
+                    )
+                })
+                .run(connection)
+                .then(() => {
+                    resolve(true);
+                })
+                .catch((error) => {
+                    logger.error(error);
+                    reject(false);
+                });
+
         });
     }
 

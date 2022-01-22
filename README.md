@@ -2,6 +2,10 @@
 
 ## General
 
+### Default user
+
+When the backend is started a default user is created with the credentials specified in the `database-configuration.json` file
+
 ### Creating an app identifier
 
 Start with creating an app identifier in the Expo Push Notification Server UI.

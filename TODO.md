@@ -21,8 +21,10 @@
     - [ ] German
 - [ ] Add settings page
     - [ ] Add button to open settings page to right menu
+- [ ] Add about dialog
 
 ## Backend
 
 - [ ] Improve error handling
 - [ ] Add support for Keycloak
+- [x] Add default admin username from configuration
