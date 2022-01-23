@@ -6,9 +6,6 @@
 - [ ] Dockerize
 - [ ] Abstract logic to use any database
 - [x] Support for multiple users with different logins
-- [ ] Support for filtering notifications
-    - [ ] by expiration
-    - [ ] by app identifier
 - [ ] Support for user groups
 - [ ] Schedule notifications
 - [ ] Recurring notifications
@@ -17,6 +14,9 @@
 
 ## Frontend
 
+- [x] Support for filtering notifications
+  - [x] by expiration
+  - [x] by app identifier
 - [ ] Improve password complexity
 - [ ] Global navigation logic
 - [ ] Add more translations

@@ -19,8 +19,14 @@
       <th class="table-header-checkbox">
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
-      <th>{{'AppIdentifier.Name' | translate}}</th>
-      <th>{{'AppIdentifier.Id' | translate}}</th>
+      <th>
+        {{'AppIdentifier.Name' | translate}}
+        <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th>
+        {{'AppIdentifier.Id' | translate}}
+        <p-sortIcon field="id"></p-sortIcon>
+      </th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-appIdentifier>

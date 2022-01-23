@@ -18,16 +18,30 @@
          styleClass="p-datatable-striped"
          scrollDirection="vertical"
          [(selection)]="selectedSubscriber"
+         [globalFilterFields]="['appIdentifierId']"
          scrollHeight="flex">
   <ng-template pTemplate="header">
     <tr>
       <th class="table-header-checkbox">
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
-      <th>{{'Subscriber.Token' | translate}}</th>
-      <th>{{'Subscriber.UniqueId' | translate}}</th>
-      <th>{{'Subscriber.LastUpdated' | translate}}</th>
-      <th>{{'Subscriber.Expired' | translate}}</th>
+      <th>
+        {{'Subscriber.Token' | translate}}
+      </th>
+      <th pSortableColumn="appIdentifierId">{{'Subscriber.UniqueId' | translate}}
+        <p-sortIcon field="appIdentifierId"></p-sortIcon>
+        <p-columnFilter type="text" field="appIdentifierId" display="menu" matchMode="equals"></p-columnFilter>
+      </th>
+      <th>
+        {{'Subscriber.LastUpdated' | translate}}
+        <p-sortIcon field="lastUpdate"></p-sortIcon>
+        <p-columnFilter type="text" field="lastUpdate" display="menu" matchMode="equals"></p-columnFilter>
+      </th>
+      <th>
+        {{'Subscriber.Expired' | translate}}
+        <p-sortIcon field="expired"></p-sortIcon>
+        <p-columnFilter type="text" field="expired" display="menu" matchMode="equals"></p-columnFilter>
+      </th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-subscriber>
