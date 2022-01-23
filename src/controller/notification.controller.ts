@@ -48,4 +48,9 @@ export class NotificationController implements interfaces.Controller {
                 .send(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
         }
     }
+
+    @httpPost('/acknowledge/:id')
+    public async acknowledge(request: Request, response: Response): Promise<void> {
+
+    }
 }

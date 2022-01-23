@@ -15,32 +15,34 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { MenuModule } from 'primeng/menu';
 import { TabViewModule } from 'primeng/tabview';
 import { SubscribersModule } from '../../components/subscribers/subscribers.module';
-import { AppIdentifiersModule } from '../../components/appIdentifiers/app-identifiers.module';
+import { AppIdentifiersModule } from '../../components/app-identifiers/app-identifiers.module';
 import { FooterModule } from '../../components/footer/footer.module';
 import { AboutDialogModule } from '../../components/dialogs/about-dialog/about-dialog.module';
+import { NotificationsModule } from '../../components/notifications/notifications.module';
 
 @NgModule({
   declarations: [HomePageComponent],
-    imports: [
-        CommonModule,
-        LogoModule,
-        FlexLayoutModule,
-        FormsModule,
-        InputTextModule,
-        ButtonModule,
-        CardModule,
-        MessagesModule,
-        MessageModule,
-        ToastModule,
-        TranslateModule,
-        ToolbarModule,
-        MenuModule,
-        TabViewModule,
-        SubscribersModule,
-        AppIdentifiersModule,
-        FooterModule,
-        AboutDialogModule
-    ],
+  imports: [
+    CommonModule,
+    LogoModule,
+    FlexLayoutModule,
+    FormsModule,
+    InputTextModule,
+    ButtonModule,
+    CardModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule,
+    TranslateModule,
+    ToolbarModule,
+    MenuModule,
+    TabViewModule,
+    SubscribersModule,
+    AppIdentifiersModule,
+    FooterModule,
+    AboutDialogModule,
+    NotificationsModule
+  ],
 })
 export class HomePageModule {
 }

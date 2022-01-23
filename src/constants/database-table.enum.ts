@@ -1,5 +1,6 @@
 export enum DatabaseTable {
     User = 'user',
     Subscriber = 'subscriber',
-    AppIdentifier = 'appIdentifier'
+    AppIdentifier = 'appIdentifier',
+    Notifications = 'notifications'
 }
