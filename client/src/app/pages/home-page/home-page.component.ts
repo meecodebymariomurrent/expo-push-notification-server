@@ -22,6 +22,8 @@ export class HomePageComponent implements OnInit {
 
   public subscriber: Array<Subscriber> = new Array<Subscriber>();
   public appIdentifier: Array<AppIdentifier> = new Array<AppIdentifier>();
+  public aboutDialogVisible = false;
+
 
   public items: Array<MenuItem> = [];
 
@@ -68,12 +70,17 @@ export class HomePageComponent implements OnInit {
       .catch((error) => this.handleError(error));
   }
 
+  public handleCloseDialog(): void {
+    this.aboutDialogVisible = false;
+  }
+
   private logout(): void {
     this.authenticationService.logout();
     this.router.navigate([Page.Login]);
   }
 
   private showAboutInfo(): void {
+    this.aboutDialogVisible = true;
   }
 
   private async initMenuItems(): Promise<void> {

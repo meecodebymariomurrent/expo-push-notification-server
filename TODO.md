@@ -21,7 +21,7 @@
     - [ ] German
 - [ ] Add settings page
     - [ ] Add button to open settings page to right menu
-- [ ] Add about dialog
+- [x] Add about dialog
 
 ## Backend
 

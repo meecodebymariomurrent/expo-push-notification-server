@@ -17,28 +17,30 @@ import { TabViewModule } from 'primeng/tabview';
 import { SubscribersModule } from '../../components/subscribers/subscribers.module';
 import { AppIdentifiersModule } from '../../components/appIdentifiers/app-identifiers.module';
 import { FooterModule } from '../../components/footer/footer.module';
+import { AboutDialogModule } from '../../components/dialogs/about-dialog/about-dialog.module';
 
 @NgModule({
   declarations: [HomePageComponent],
-  imports: [
-    CommonModule,
-    LogoModule,
-    FlexLayoutModule,
-    FormsModule,
-    InputTextModule,
-    ButtonModule,
-    CardModule,
-    MessagesModule,
-    MessageModule,
-    ToastModule,
-    TranslateModule,
-    ToolbarModule,
-    MenuModule,
-    TabViewModule,
-    SubscribersModule,
-    AppIdentifiersModule,
-    FooterModule
-  ],
+    imports: [
+        CommonModule,
+        LogoModule,
+        FlexLayoutModule,
+        FormsModule,
+        InputTextModule,
+        ButtonModule,
+        CardModule,
+        MessagesModule,
+        MessageModule,
+        ToastModule,
+        TranslateModule,
+        ToolbarModule,
+        MenuModule,
+        TabViewModule,
+        SubscribersModule,
+        AppIdentifiersModule,
+        FooterModule,
+        AboutDialogModule
+    ],
 })
 export class HomePageModule {
 }

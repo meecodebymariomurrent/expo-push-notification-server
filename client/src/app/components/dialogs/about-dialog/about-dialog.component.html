@@ -1,0 +1,13 @@
+<p-dialog header="{{'App.Title' | translate}}" [(visible)]="display" (close)="handleDialogClose()">
+  <div class="card">
+    <div class="card-container text-center">
+      <p-image src="assets/images/meecode-logo-small.png" alt="Image" width="150"></p-image>
+    </div>
+    <div class="card-container text-center mt-1">
+      <div>{{appVersion}}</div>
+    </div>
+    <div class="card-container text-center mt-1">
+      <div>{{copyRight}}</div>
+    </div>
+  </div>
+</p-dialog>

@@ -24,3 +24,6 @@
   </p-tabPanel>
 </p-tabView>
 <app-footer></app-footer>
+<app-about-dialog
+  [display]="aboutDialogVisible"
+  (closeDialog)="handleCloseDialog()"></app-about-dialog>
