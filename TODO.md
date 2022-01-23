@@ -12,6 +12,8 @@
 - [ ] Support for user groups
 - [ ] Schedule notifications
 - [ ] Recurring notifications
+- [ ] Log for send notifications
+- [ ] Possibility to acknowledge notifications from client
 
 ## Frontend
 
