@@ -1,4 +1,16 @@
 
+.container {
+  display: flex;
+
+  .menu {
+    padding: 0.5rem;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+}
+
 p-tabView {
   bottom: 3rem;
 }

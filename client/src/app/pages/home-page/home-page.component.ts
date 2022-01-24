@@ -11,11 +11,23 @@ import { AppIdentifierService } from '../../services/app-identifier.service';
 import { AppIdentifier } from '../../models/app-identifier.model';
 import { TranslateService } from '@ngx-translate/core';
 import { BackendError } from '../../models/backend-error.model';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({transform: 'translateX(-100%)'}),
+        animate('100ms ease-in', style({transform: 'translateX(0%)'}))
+      ]),
+      transition(':leave', [
+        animate('100ms ease-in', style({transform: 'translateX(-100%)'}))
+      ])
+    ])
+  ],
   encapsulation: ViewEncapsulation.None
 })
 export class HomePageComponent implements OnInit {
@@ -23,7 +35,7 @@ export class HomePageComponent implements OnInit {
   public subscriber: Array<Subscriber> = new Array<Subscriber>();
   public appIdentifier: Array<AppIdentifier> = new Array<AppIdentifier>();
   public aboutDialogVisible = false;
-
+  public menuVisible = true;
 
   public items: Array<MenuItem> = [];
 
@@ -72,6 +84,10 @@ export class HomePageComponent implements OnInit {
 
   public handleCloseDialog(): void {
     this.aboutDialogVisible = false;
+  }
+
+  public toggleSideMenu(): void {
+    this.menuVisible = !this.menuVisible;
   }
 
   private logout(): void {
