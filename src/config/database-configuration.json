@@ -3,7 +3,8 @@
   "tables": [
     "user",
     "subscriber",
-    "appIdentifier"
+    "appIdentifier",
+    "notifications"
   ],
   "adminUserName": "admin",
   "adminPassword": "14ca7eaa68e61e6aea8166514352c807d82b700fdc7938b921e11f9fe498f97d"

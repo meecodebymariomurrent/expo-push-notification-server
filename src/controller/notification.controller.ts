@@ -1,4 +1,4 @@
-import { controller, httpPost, interfaces } from 'inversify-express-utils';
+import { controller, httpGet, httpPost, interfaces } from 'inversify-express-utils';
 import { Request, Response } from 'express';
 import { inject } from 'inversify';
 import { SubscriberService } from '../services/subscriber.service';
@@ -47,5 +47,15 @@ export class NotificationController implements interfaces.Controller {
             response.status(StatusCodes.INTERNAL_SERVER_ERROR)
                 .send(new ApiError('Internal server error', StatusCodes.INTERNAL_SERVER_ERROR, error));
         }
+    }
+
+    @httpPost('/schedule')
+    public async schedule(request: Request, response: Response): Promise<void> {
+
+    }
+
+    @httpGet('/scheduled')
+    public async getScheduled(request: Request, response: Response): Promise<void> {
+
     }
 }
