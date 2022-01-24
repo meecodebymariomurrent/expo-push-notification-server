@@ -22,7 +22,7 @@
 - [ ] Add more translations
     - [ ] German
 - [ ] Add settings page
-    - [ ] Add button to open settings page to right menu
+    - [ ] Add button to open settings dialog to right menu
 - [x] Add about dialog
 
 ## Backend
