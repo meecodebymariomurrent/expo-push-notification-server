@@ -1,13 +1,20 @@
 
 .container {
   display: flex;
+  height: 100%;
 
-  .menu {
-    padding: 0.5rem;
+  .menu{
+    border-radius: 1rem;
+    margin: 1rem;
+    background-color: white;
   }
 
   .main-content {
+    border-radius: 1rem;
+    margin: 1rem;
     width: 100%;
+    background-color: white;
+    height: calc(100% - 4rem);
   }
 }
 

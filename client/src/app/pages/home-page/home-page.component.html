@@ -15,8 +15,7 @@
 </p-toolbar>
 <div class="container">
   <aside class="menu" *ngIf="menuVisible" [@slideInOut]>
-    <button type="button" class="p-button-outlined toolbar-button" pButton icon="pi pi-user"
-            (click)="menu.toggle($event)" label="Test"></button>
+    <app-main-menu></app-main-menu>
   </aside>
   <div class="main-content">
     <p-tabView (activeIndexChange)="this.fetchData()">

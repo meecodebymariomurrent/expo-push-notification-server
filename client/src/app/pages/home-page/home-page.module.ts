@@ -18,29 +18,31 @@ import { SubscribersModule } from '../../components/subscribers/subscribers.modu
 import { AppIdentifiersModule } from '../../components/appIdentifiers/app-identifiers.module';
 import { FooterModule } from '../../components/footer/footer.module';
 import { AboutDialogModule } from '../../components/dialogs/about-dialog/about-dialog.module';
+import { MainMenuModule } from '../../components/main-menu/main-menu.module';
 
 @NgModule({
   declarations: [HomePageComponent],
-    imports: [
-        CommonModule,
-        LogoModule,
-        FlexLayoutModule,
-        FormsModule,
-        InputTextModule,
-        ButtonModule,
-        CardModule,
-        MessagesModule,
-        MessageModule,
-        ToastModule,
-        TranslateModule,
-        ToolbarModule,
-        MenuModule,
-        TabViewModule,
-        SubscribersModule,
-        AppIdentifiersModule,
-        FooterModule,
-        AboutDialogModule
-    ],
+  imports: [
+    CommonModule,
+    LogoModule,
+    FlexLayoutModule,
+    FormsModule,
+    InputTextModule,
+    ButtonModule,
+    CardModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule,
+    TranslateModule,
+    ToolbarModule,
+    MenuModule,
+    TabViewModule,
+    SubscribersModule,
+    AppIdentifiersModule,
+    FooterModule,
+    AboutDialogModule,
+    MainMenuModule
+  ],
 })
 export class HomePageModule {
 }
