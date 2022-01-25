@@ -1,15 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
 
+
+
+html {
+  font-size: 1rem !important;
+  height: 100%;
+}
+
 body {
+  background-color: #eff3f8;
   margin: 0 !important;
   font-family: Lato, "Helvetica Neue", sans-serif;
+  height: 100%;
 }
 
 p-toolbar {
   .p-toolbar {
     padding: 0.7rem;
     border-radius: 0;
+    margin-bottom: 0 !important;
   }
 }
 

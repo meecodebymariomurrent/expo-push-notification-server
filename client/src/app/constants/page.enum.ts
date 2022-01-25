@@ -1,5 +1,7 @@
 export enum Page {
   Home = 'home',
   Register = 'register',
-  Login = ''
+  Login = '',
+  Notifications = 'notifications',
+  AppIdentifier = 'appIdentifier',
 }
