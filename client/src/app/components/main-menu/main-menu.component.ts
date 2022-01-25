@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Page } from '../../constants/page.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-menu',
@@ -7,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainMenuComponent implements OnInit {
 
-  constructor() {
+  public page = Page;
+
+  constructor(private router: Router) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
   }
 
+  public handleNavigate(page: Page): void {
+    this.router.navigate([page]);
+  }
 }

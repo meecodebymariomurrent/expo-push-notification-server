@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MenuItem, Message, MessageService } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Router } from '@angular/router';
-import { Page } from '../../constants/page.enum';
 import { Subscriber } from '../../models/subscriber.model';
 import { SubscriberService } from '../../services/subscriber.service';
 import { MessageSeverity } from '../../constants/primeng/message-severity.enum';
@@ -11,45 +9,27 @@ import { AppIdentifierService } from '../../services/app-identifier.service';
 import { AppIdentifier } from '../../models/app-identifier.model';
 import { TranslateService } from '@ngx-translate/core';
 import { BackendError } from '../../models/backend-error.model';
-import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
-  animations: [
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({transform: 'translateX(-100%)'}),
-        animate('100ms ease-in', style({transform: 'translateX(0%)'}))
-      ]),
-      transition(':leave', [
-        animate('100ms ease-in', style({transform: 'translateX(-100%)'}))
-      ])
-    ])
-  ],
   encapsulation: ViewEncapsulation.None
 })
 export class HomePageComponent implements OnInit {
 
   public subscriber: Array<Subscriber> = new Array<Subscriber>();
   public appIdentifier: Array<AppIdentifier> = new Array<AppIdentifier>();
-  public aboutDialogVisible = false;
-  public menuVisible = true;
-
-  public items: Array<MenuItem> = [];
 
   constructor(private authenticationService: AuthenticationService,
               private subscriberService: SubscriberService,
               private appIdentifierService: AppIdentifierService,
               private messageService: MessageService,
               private translateService: TranslateService,
-              private logger: NGXLogger,
-              private router: Router) {
+              private logger: NGXLogger) {
   }
 
   ngOnInit(): void {
-    this.initMenuItems();
     this.fetchData();
   }
 
@@ -80,43 +60,6 @@ export class HomePageComponent implements OnInit {
     this.appIdentifierService.getAll()
       .then((response) => this.appIdentifier = response)
       .catch((error) => this.handleError(error));
-  }
-
-  public handleCloseDialog(): void {
-    this.aboutDialogVisible = false;
-  }
-
-  public toggleSideMenu(): void {
-    this.menuVisible = !this.menuVisible;
-  }
-
-  private logout(): void {
-    this.authenticationService.logout();
-    this.router.navigate([Page.Login]);
-  }
-
-  private showAboutInfo(): void {
-    this.aboutDialogVisible = true;
-  }
-
-  private async initMenuItems(): Promise<void> {
-    this.translateService.get('Home.Menu.Logout').subscribe((translated: string) => {
-      this.items = [
-        {
-          label: this.translateService.instant('Home.Menu.Logout'),
-          icon: 'pi pi-fw pi-sign-out',
-          command: () => {
-            this.logout();
-          }
-        },
-        {
-          label: this.translateService.instant('Home.Menu.About'),
-          icon: 'pi pi-fw pi-info-circle',
-          command: () => {
-            this.showAboutInfo();
-          }
-        }]
-    });
   }
 
   private handleError(error: BackendError): void {

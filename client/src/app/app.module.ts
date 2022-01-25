@@ -13,6 +13,15 @@ import { LoginPageModule } from './pages/login-page/login-page.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomePageModule } from './pages/home-page/home-page.module';
 import { lastValueFrom } from 'rxjs';
+import { AppIdentifierPageModule } from './pages/app-identifier-page/app-identifier-page.module';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { LogoModule } from './components/logo/logo.module';
+import { MainMenuModule } from './components/main-menu/main-menu.module';
+import { FooterModule } from './components/footer/footer.module';
+import { AboutDialogModule } from './components/dialogs/about-dialog/about-dialog.module';
+import { MenuModule } from 'primeng/menu';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -24,6 +33,7 @@ import { lastValueFrom } from 'rxjs';
     AppRoutingModule,
     HttpClientModule,
     RegisterPageModule,
+    AppIdentifierPageModule,
     LoginPageModule,
     HomePageModule,
     LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR}),
@@ -34,6 +44,14 @@ import { lastValueFrom } from 'rxjs';
         deps: [HttpClient]
       }
     }),
+    ToastModule,
+    ToolbarModule,
+    LogoModule,
+    MainMenuModule,
+    FooterModule,
+    AboutDialogModule,
+    MenuModule,
+    ButtonModule,
   ],
   providers: [
     {

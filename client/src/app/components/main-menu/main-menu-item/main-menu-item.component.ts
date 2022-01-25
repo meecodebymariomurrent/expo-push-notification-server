@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-main-menu-item',
@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MainMenuItemComponent implements OnInit {
 
   @Input() caption: string = '';
+  @Output() press: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
 
@@ -17,4 +18,7 @@ export class MainMenuItemComponent implements OnInit {
 
   }
 
+  public handleClick(): void {
+    this.press.emit();
+  }
 }
