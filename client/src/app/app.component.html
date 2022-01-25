@@ -1,4 +1,4 @@
-<div class="app-view">
+<div class="app-view" *ngIf="loggedIn">
   <p-toast position="top-right"></p-toast>
   <p-toolbar class="main-toolbar">
     <div class="p-toolbar-group-left">
@@ -27,3 +27,4 @@
     [display]="aboutDialogVisible"
     (closeDialog)="handleCloseDialog()"></app-about-dialog>
 </div>
+<router-outlet *ngIf="!loggedIn"></router-outlet>

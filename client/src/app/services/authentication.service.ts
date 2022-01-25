@@ -7,6 +7,7 @@ import { NGXLogger } from 'ngx-logger';
 import { ApiPath } from '../constants/api-path.enum';
 import { LoginRequest } from '../models/request/login-request.model';
 import { LoginResponse } from '../models/response/login-response.model';
+import {  Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,8 @@ import { LoginResponse } from '../models/response/login-response.model';
 export class AuthenticationService {
   private token: string = '';
   private userId: string = '';
+
+  public loggedIn = new Subject<boolean>();
 
   constructor(private http: HttpClient,
               private storage: StorageService,
@@ -33,6 +36,7 @@ export class AuthenticationService {
       this.token = response.token;
       this.storage.save(StorageKey.AUTH_TOKEN, this.token);
       this.storage.save(StorageKey.USER_ID, this.userId);
+      this.loggedIn.next(true);
       return Promise.resolve(true);
     } catch (error) {
       this.logger.error('Error during login request', error);
@@ -51,6 +55,7 @@ export class AuthenticationService {
   public logout() {
     this.token = '';
     this.storage.remove(StorageKey.AUTH_TOKEN);
+    this.loggedIn.next(false);
   }
 
   public isLogged(): boolean {

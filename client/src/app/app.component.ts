@@ -30,6 +30,7 @@ export class AppComponent {
 
   public aboutDialogVisible = false;
   public menuVisible = true;
+  public loggedIn = false;
 
   public items: Array<MenuItem> = [];
 
@@ -42,7 +43,8 @@ export class AppComponent {
               private router: Router) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.authenticationService.loggedIn.subscribe((value: boolean)=> this.loggedIn = value);
     this.initMenuItems();
   }
 

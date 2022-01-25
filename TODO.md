@@ -14,6 +14,7 @@
 
 ## Frontend
 
+- [ ] Find a better routing solution for login/home and sub routes
 - [x] Support for filtering notifications
   - [x] by expiration
   - [x] by app identifier
