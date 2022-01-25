@@ -25,6 +25,7 @@
 - [ ] Add settings page
     - [ ] Add button to open settings dialog to right menu
 - [x] Add about dialog
+- [ ] Fix design for mobile devices
 
 ## Backend
 
