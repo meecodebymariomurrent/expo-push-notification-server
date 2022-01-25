@@ -1,6 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import {  NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomePageComponent } from './home-page.component';
 import { LogoModule } from '../../components/logo/logo.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
@@ -15,14 +14,14 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { MenuModule } from 'primeng/menu';
 import { TabViewModule } from 'primeng/tabview';
 import { SubscribersModule } from '../../components/subscribers/subscribers.module';
-import { AppIdentifiersModule } from '../../components/app-identifiers/app-identifiers.module';
+import { AppIdentifiersModule } from '../../components/appIdentifiers/app-identifiers.module';
 import { FooterModule } from '../../components/footer/footer.module';
 import { AboutDialogModule } from '../../components/dialogs/about-dialog/about-dialog.module';
-import { NotificationsModule } from '../../components/notifications/notifications.module';
 import { MainMenuModule } from '../../components/main-menu/main-menu.module';
+import { AppIdentifierPageComponent } from './app-identifier-page.component';
 
 @NgModule({
-  declarations: [HomePageComponent],
+  declarations: [AppIdentifierPageComponent],
   imports: [
     CommonModule,
     LogoModule,
@@ -42,9 +41,8 @@ import { MainMenuModule } from '../../components/main-menu/main-menu.module';
     AppIdentifiersModule,
     FooterModule,
     AboutDialogModule,
-    NotificationsModule,
     MainMenuModule
   ],
 })
-export class HomePageModule {
+export class AppIdentifierPageModule {
 }

@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MenuItem, Message, MessageService } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Router } from '@angular/router';
-import { Page } from '../../constants/page.enum';
 import { Subscriber } from '../../models/subscriber.model';
 import { SubscriberService } from '../../services/subscriber.service';
 import { MessageSeverity } from '../../constants/primeng/message-severity.enum';
@@ -22,22 +20,16 @@ export class HomePageComponent implements OnInit {
 
   public subscriber: Array<Subscriber> = new Array<Subscriber>();
   public appIdentifier: Array<AppIdentifier> = new Array<AppIdentifier>();
-  public aboutDialogVisible = false;
-
-
-  public items: Array<MenuItem> = [];
 
   constructor(private authenticationService: AuthenticationService,
               private subscriberService: SubscriberService,
               private appIdentifierService: AppIdentifierService,
               private messageService: MessageService,
               private translateService: TranslateService,
-              private logger: NGXLogger,
-              private router: Router) {
+              private logger: NGXLogger) {
   }
 
   ngOnInit(): void {
-    this.initMenuItems();
     this.fetchData();
   }
 
@@ -68,39 +60,6 @@ export class HomePageComponent implements OnInit {
     this.appIdentifierService.getAll()
       .then((response) => this.appIdentifier = response)
       .catch((error) => this.handleError(error));
-  }
-
-  public handleCloseDialog(): void {
-    this.aboutDialogVisible = false;
-  }
-
-  private logout(): void {
-    this.authenticationService.logout();
-    this.router.navigate([Page.Login]);
-  }
-
-  private showAboutInfo(): void {
-    this.aboutDialogVisible = true;
-  }
-
-  private async initMenuItems(): Promise<void> {
-    this.translateService.get('Home.Menu.Logout').subscribe((translated: string) => {
-      this.items = [
-        {
-          label: this.translateService.instant('Home.Menu.Logout'),
-          icon: 'pi pi-fw pi-sign-out',
-          command: () => {
-            this.logout();
-          }
-        },
-        {
-          label: this.translateService.instant('Home.Menu.About'),
-          icon: 'pi pi-fw pi-info-circle',
-          command: () => {
-            this.showAboutInfo();
-          }
-        }]
-    });
   }
 
   private handleError(error: BackendError): void {

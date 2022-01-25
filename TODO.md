@@ -14,6 +14,7 @@
 
 ## Frontend
 
+- [ ] Find a better routing solution for login/home and sub routes
 - [x] Support for filtering notifications
   - [x] by expiration
   - [x] by app identifier
@@ -22,8 +23,9 @@
 - [ ] Add more translations
     - [ ] German
 - [ ] Add settings page
-    - [ ] Add button to open settings page to right menu
+    - [ ] Add button to open settings dialog to right menu
 - [x] Add about dialog
+- [ ] Fix design for mobile devices
 
 ## Backend
 

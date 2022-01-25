@@ -1,4 +1,4 @@
-import { controller, httpPost, interfaces } from 'inversify-express-utils';
+import { controller, httpGet, httpPost, interfaces } from 'inversify-express-utils';
 import { Request, Response } from 'express';
 import { inject } from 'inversify';
 import { SubscriberService } from '../services/subscriber.service';
@@ -51,6 +51,16 @@ export class NotificationController implements interfaces.Controller {
 
     @httpPost('/acknowledge/:id')
     public async acknowledge(request: Request, response: Response): Promise<void> {
+
+    }
+
+    @httpPost('/schedule')
+    public async schedule(request: Request, response: Response): Promise<void> {
+
+    }
+
+    @httpGet('/scheduled')
+    public async getScheduled(request: Request, response: Response): Promise<void> {
 
     }
 }
