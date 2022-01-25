@@ -1,13 +1,2 @@
-<p-tabView (activeIndexChange)="this.fetchData()">
-  <p-tabPanel header="{{'Home.Subscriber' | translate}}">
-    <app-subscribers [subscribers]="subscriber"></app-subscribers>
-  </p-tabPanel>
-  <p-tabPanel header="{{'Home.AppIdentifier' | translate}}">
-    <app-app-identifiers
-      [appIdentifiers]="appIdentifier"
-      (deleteAppIdentifier)="handleDeleteAppIdentifier($event)"
-      (appIdentifierSaved)="handleAppIdentifierSaved()"
-    ></app-app-identifiers>
-  </p-tabPanel>
-</p-tabView>
+<app-subscribers [subscribers]="subscriber"></app-subscribers>
 

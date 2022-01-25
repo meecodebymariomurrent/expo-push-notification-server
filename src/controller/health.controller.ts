@@ -2,11 +2,10 @@ import { controller, httpGet, interfaces } from 'inversify-express-utils';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes'
 import logger from '../utils/logger';
-import { JwtMiddleware } from '../middleware/jwt.middleware';
 
 let tainted = false;
 
-@controller('/health', JwtMiddleware.name)
+@controller('/health')
 export class HealthController implements interfaces.Controller {
 
     @httpGet('/live')

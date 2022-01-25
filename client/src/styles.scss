@@ -30,3 +30,7 @@ p-toolbar {
 .p-tabview .p-tabview-panels {
   padding: 0;
 }
+
+.p-button:focus{
+  box-shadow: none !important;
+}

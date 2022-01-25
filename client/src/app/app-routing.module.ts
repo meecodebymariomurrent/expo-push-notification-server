@@ -7,7 +7,6 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { AuthGuard } from './guards/auth.guard';
 import { AppIdentifierPageComponent } from './pages/app-identifier-page/app-identifier-page.component';
 
-
 const routes: Routes = [
   {
     path: Page.Login,
