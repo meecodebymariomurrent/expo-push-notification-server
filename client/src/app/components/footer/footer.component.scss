@@ -4,13 +4,13 @@
   .footer {
     position: fixed;
     bottom: 0;
-    background-color: $color-primary;
     width: 100%;
     z-index: 102;
     height: 3rem;
     line-height: 3rem;
     vertical-align: middle;
     text-align: center;
-    color: $color-primary-text;
+    color: $color-black;
+    border-top: 1px solid $color-footer-border;
   }
 }

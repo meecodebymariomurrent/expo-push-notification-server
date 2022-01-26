@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
-
+@import 'variables';
 
 
 html {
@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  background-color: #eff3f8;
+  background-color: $color-background;
   margin: 0 !important;
   font-family: Lato, "Helvetica Neue", sans-serif;
   height: 100%;

@@ -53,12 +53,13 @@ export class AuthenticationService {
   }
 
   public logout() {
-    this.token = '';
     this.storage.remove(StorageKey.AUTH_TOKEN);
+    this.storage.remove(StorageKey.USER_ID);
+    this.token = '';
     this.loggedIn.next(false);
   }
 
   public isLogged(): boolean {
-    return this.token.length > 0;
+    return this.token.trim().length > 0;
   }
 }

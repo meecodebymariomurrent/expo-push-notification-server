@@ -1,3 +1,11 @@
+@import '../../../../variables';
+
 .button-wrapper {
-  border-bottom-color: #2E4959;
+  border-bottom-color: $color-primary;
+  width: 100%;
+
+  button {
+    width: 100%;
+    color: $color-primary;
+  }
 }
