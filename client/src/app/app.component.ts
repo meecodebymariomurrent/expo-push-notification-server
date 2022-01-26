@@ -44,7 +44,12 @@ export class AppComponent {
   }
 
   public ngOnInit(): void {
-    this.authenticationService.loggedIn.subscribe((value: boolean)=> this.loggedIn = value);
+    console.log("INIT");
+    console.log(this.authenticationService.isLogged());
+    this.loggedIn = this.authenticationService.isLogged();
+    this.authenticationService.loggedIn.subscribe((value: boolean) => {
+      this.loggedIn = value;
+    });
     this.initMenuItems();
   }
 

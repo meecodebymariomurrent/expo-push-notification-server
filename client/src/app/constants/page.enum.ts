@@ -4,4 +4,5 @@ export enum Page {
   Login = '',
   Notifications = 'notifications',
   AppIdentifier = 'appIdentifier',
+  Settings = 'settings'
 }

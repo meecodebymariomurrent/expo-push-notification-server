@@ -1,6 +1,6 @@
-<div class="app-view" *ngIf="loggedIn">
+<div class="app-view" [ngClass]="!loggedIn ? 'full' : ''">
   <p-toast position="top-right"></p-toast>
-  <p-toolbar class="main-toolbar">
+  <p-toolbar class="main-toolbar" *ngIf="loggedIn">
     <div class="p-toolbar-group-left">
       <app-logo [width]="'40'"></app-logo>
       <div class="ml-3">{{'App.Title' | translate}}</div>
@@ -15,16 +15,15 @@
     </div>
   </p-toolbar>
   <div class="container">
-    <aside class="menu" *ngIf="menuVisible" [@slideInOut]>
+    <aside class="menu" *ngIf="menuVisible && loggedIn" [@slideInOut]>
       <app-main-menu></app-main-menu>
     </aside>
-    <div class="main-content">
+    <div class="main-content" [ngClass]="!loggedIn ? 'full' : ''">
       <router-outlet></router-outlet>
     </div>
   </div>
-  <app-footer></app-footer>
-  <app-about-dialog
-    [display]="aboutDialogVisible"
-    (closeDialog)="handleCloseDialog()"></app-about-dialog>
+  <app-footer *ngIf="loggedIn"></app-footer>
+  <app-about-dialog *ngIf="loggedIn"
+                    [display]="aboutDialogVisible"
+                    (closeDialog)="handleCloseDialog()"></app-about-dialog>
 </div>
-<router-outlet *ngIf="!loggedIn"></router-outlet>

@@ -1,1 +1,5 @@
-<p>app-identifier-page works!</p>
+<app-app-identifiers
+  [appIdentifiers]="appIdentifier"
+  (deleteAppIdentifier)="handleDeleteAppIdentifier($event)"
+  (appIdentifierSaved)="handleAppIdentifierSaved()"
+></app-app-identifiers>
