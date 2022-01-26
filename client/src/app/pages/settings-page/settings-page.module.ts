@@ -12,11 +12,10 @@ import { ToastModule } from 'primeng/toast';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToolbarModule } from 'primeng/toolbar';
 import { MenuModule } from 'primeng/menu';
-import { AppIdentifiersModule } from '../../components/appIdentifiers/app-identifiers.module';
-import { AppIdentifierPageComponent } from './app-identifier-page.component';
+import { SettingsPageComponent } from './settings-page.component';
 
 @NgModule({
-  declarations: [AppIdentifierPageComponent],
+  declarations: [SettingsPageComponent],
   imports: [
     CommonModule,
     LogoModule,
@@ -31,8 +30,7 @@ import { AppIdentifierPageComponent } from './app-identifier-page.component';
     TranslateModule,
     ToolbarModule,
     MenuModule,
-    AppIdentifiersModule,
   ],
 })
-export class AppIdentifierPageModule {
+export class SettingsPageModule {
 }
