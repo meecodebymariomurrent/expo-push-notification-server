@@ -1,5 +1,9 @@
 # Expo example snippet for registering a subscriber
 
+Please make sure you read the Expo guide before:
+
+[Push Notification Overview](https://docs.expo.dev/push-notifications/overview/)
+
 ````javascript
 import * as Notifications from 'expo-notifications';
 import { deviceLog } from '@utils/logger';
