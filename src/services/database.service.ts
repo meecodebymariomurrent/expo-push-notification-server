@@ -4,6 +4,7 @@ import logger from '../utils/logger';
 import * as databaseConfiguration from '../config/database-configuration.json';
 import * as _ from 'lodash';
 import { DatabaseTable } from '../constants/database-table.enum';
+import { User } from '../models/user.model';
 
 @injectable()
 export class DatabaseService {
@@ -275,32 +276,24 @@ export class DatabaseService {
         });
     }
 
-    private addAdminUser(connection: Connection): Promise<boolean> {
+    private async addAdminUser(connection: Connection): Promise<boolean> {
+        const result = await this.filterBy<User>({username: databaseConfiguration.adminUserName}, DatabaseTable.User);
+        const userExists = result.length > 0;
+        if (userExists) {
+            logger.info('Admin user already exists');
+            return Promise.resolve(true);
+        }
         return new Promise((resolve, reject) => {
-            r.db(databaseConfiguration.databaseName)
-                .table(DatabaseTable.User)
-                .filter(e => e.username === databaseConfiguration.adminUserName)
-                .isEmpty()
-                .do((empty: RDatum<boolean>) => {
-                    return r.branch(
-                        empty,
-                        r.db(databaseConfiguration.databaseName).table(DatabaseTable.User)
-                            .insert({
-                                username: databaseConfiguration.adminUserName,
-                                password: databaseConfiguration.adminPassword
-                            }),
-                        {create: 1},
-                    )
-                })
-                .run(connection)
+            const user = {
+                username: databaseConfiguration.adminUserName,
+                password: databaseConfiguration.adminPassword
+            } as User;
+            this.add<User>(user, DatabaseTable.User)
                 .then(() => {
                     resolve(true);
-                })
-                .catch((error) => {
-                    logger.error(error);
-                    reject(false);
-                });
-
+                }).catch((error) => {
+                reject(false);
+            })
         });
     }
 
