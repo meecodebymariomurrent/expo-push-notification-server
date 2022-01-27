@@ -7,7 +7,6 @@ import {
     Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Page } from '../constants/page.enum';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
@@ -29,7 +28,7 @@ export class AuthGuard implements CanActivate {
         if (this.authenticationService.isLogged()) {
             return true;
         }
-        this.router.navigate([Page.Login]);
+        this.authenticationService.logout();
         return false;
     }
 }
