@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { HttpHeaderName } from '../../constants/http-header-name.enum';
 import { HttpHeaderValue } from '../../constants/http-header-value.enum';
