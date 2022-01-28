@@ -36,7 +36,7 @@ The app identifier created via the Expo Push Notification Server UI
 
 ### Expo Util Example
 
-See [Expo App Notification Example](examples/expo/NOTIFICATION.md) for a full example.
+See [Expo App Notification Example](examples/expo-snippet/NOTIFICATION.md) for a full example.
 After successful registration of a subscriber you should see the subscriber in the list on the Expo Push Notification Server UI.
 
 ### Sending push notifications
@@ -52,6 +52,10 @@ NodeJS Typescript server based on [expressJS](https://expressjs.com/)
 
 - Existing [RethinkDB](https://rethinkdb.com/docs/install/)
 
+### Installing dependencies
+
+`npm install`
+
 ### Starting the server
 
 `npm run start`
@@ -59,6 +63,10 @@ NodeJS Typescript server based on [expressJS](https://expressjs.com/)
 ## Frontend
 
 Angular Frontend
+
+### Installing dependencies
+
+`npm install`
 
 ### Starting the frontend
 

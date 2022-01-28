@@ -7,13 +7,16 @@
 - [ ] Abstract logic to use any database
 - [x] Support for multiple users with different logins
 - [ ] Support for user groups
+- [ ] Expire notifications 
 - [ ] Schedule notifications
 - [ ] Recurring notifications
-- [ ] Log for send notifications
+- [ ] Log for sent notifications
+  - [ ] Delete them periodically (time can be set via settings)
 - [ ] Possibility to acknowledge notifications from client
 
 ## Frontend
 
+- [ ] Add profile page
 - [ ] Find a better routing solution for login/home and sub routes
 - [x] Support for filtering notifications
   - [x] by expiration
@@ -24,8 +27,12 @@
     - [ ] German
 - [ ] Add settings page
     - [ ] Add button to open settings dialog to right menu
+    - [ ] Settings that can be changed
+    - [ ] Settings are only available for admin users
+    - [ ] Time for deleting notifications log
 - [x] Add about dialog
 - [ ] Fix design for mobile devices
+- [ ] Support different environments
 
 ## Backend
 
