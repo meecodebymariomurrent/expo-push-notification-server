@@ -52,6 +52,10 @@ NodeJS Typescript server based on [expressJS](https://expressjs.com/)
 
 - Existing [RethinkDB](https://rethinkdb.com/docs/install/)
 
+### Installing dependencies
+
+`npm install`
+
 ### Starting the server
 
 `npm run start`
@@ -59,6 +63,10 @@ NodeJS Typescript server based on [expressJS](https://expressjs.com/)
 ## Frontend
 
 Angular Frontend
+
+### Installing dependencies
+
+`npm install`
 
 ### Starting the frontend
 

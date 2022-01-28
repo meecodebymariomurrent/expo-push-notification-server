@@ -32,6 +32,7 @@
     - [ ] Time for deleting notifications log
 - [x] Add about dialog
 - [ ] Fix design for mobile devices
+- [ ] Support different environments
 
 ## Backend
 
