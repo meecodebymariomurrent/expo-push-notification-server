@@ -1,8 +1,8 @@
 # Expo Push Notification Server with Angular PrimeNG UI
 
 <p align="center">
-  <img src="docs/images/login-view.png" width="450">
-  <img src="docs/images/main-view.png" width="450">
+  <img src="docs/images/login-view.png" width="350">
+  <img src="docs/images/main-view.png" width="350">
 </p>
 
 ## General
