@@ -1,5 +1,13 @@
 # Expo Push Notification Server with Angular PrimeNG UI
 
+![Login Page](docs/images/login-view.png)
+![Main Page](docs/images/main-view.png)
+
+<p align="center">
+  <img src="docs/images/login-view.png" width="350">
+  <img src="docs/images/main-view.png" width="350">
+</p>
+
 ## General
 
 ### Default user
