@@ -12,6 +12,7 @@ import { NotificationRequest } from '../models/request/notification-request.mode
 import logger from '../utils/logger';
 import { ApiError } from '../models/errors/api-error.model';
 import { NotificationResponse } from '../models/response/notification-response.model';
+import { NotificationRequestData } from '../models/request/notification-request-data.model';
 
 @controller('/notification', JwtMiddleware.name)
 export class NotificationController implements interfaces.Controller {
@@ -29,7 +30,7 @@ export class NotificationController implements interfaces.Controller {
             const messages = new Array<ExpoPushMessage>();
             subscriber.forEach((subscriber: Subscriber) => {
                 if (!Expo.isExpoPushToken(subscriber.token)) {
-                    return console.error(`Push token ${subscriber.token} is not a valid Expo push token`);
+                    logger.error(`Push token ${subscriber.token} is not a valid Expo push token`);
                 }
 
                 messages.push({
@@ -37,6 +38,7 @@ export class NotificationController implements interfaces.Controller {
                     sound: 'default',
                     title: notificationData.title,
                     body: notificationData.message,
+                    data: notificationData?.data
                 });
             });
             const receipt = await this.expoClient.sendPushNotificationsAsync(messages);
