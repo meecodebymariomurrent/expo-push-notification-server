@@ -2,8 +2,11 @@
 
 ## General
 
+- [ ] Create a common model project
 - [ ] Support for iOS/Android specific notification properties
+- [ ] Support for additional data property for notifications
 - [ ] Dockerize
+- [ ] Optimize build
 - [ ] Abstract logic to use any database
 - [x] Support for multiple users with different logins
 - [ ] Support for user groups
