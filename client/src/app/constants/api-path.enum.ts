@@ -6,4 +6,5 @@ export enum ApiPath{
   PublishNotification = 'notification/publish',
   AppIdentifier = 'user/${id}/appIdentifier',
   CreateAppIdentifier='appIdentifier/create',
+  Check = 'health/check'
 }

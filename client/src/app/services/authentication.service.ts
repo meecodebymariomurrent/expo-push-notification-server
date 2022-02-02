@@ -7,7 +7,7 @@ import { NGXLogger } from 'ngx-logger';
 import { ApiPath } from '../constants/api-path.enum';
 import { LoginRequest } from '../models/request/login-request.model';
 import { LoginResponse } from '../models/response/login-response.model';
-import {  Subject } from 'rxjs';
+import { lastValueFrom, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +42,16 @@ export class AuthenticationService {
       this.logger.error('Error during login request', error);
       return Promise.reject(error);
     }
+  }
+
+  public async checkLoggedInStatus(): Promise<void> {
+    try {
+      await lastValueFrom(this.crudService.getData(ApiPath.Check));
+    } catch (error) {
+      this.logger.error(error);
+      this.logout();
+    }
+    return Promise.resolve();
   }
 
   public getToken(): string {

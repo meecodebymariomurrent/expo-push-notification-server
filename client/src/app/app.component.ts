@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { MenuItem, MessageService } from 'primeng/api';
 import { AuthenticationService } from './services/authentication.service';
@@ -8,6 +8,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
 import { Router } from '@angular/router';
 import { Page } from './constants/page.enum';
+import { CrudService } from './services/http/crud.service';
+import { ApiPath } from './constants/api-path.enum';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +29,7 @@ import { Page } from './constants/page.enum';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   public aboutDialogVisible = false;
   public menuVisible = true;
@@ -40,10 +43,12 @@ export class AppComponent {
               private messageService: MessageService,
               private translateService: TranslateService,
               private logger: NGXLogger,
+              private crudService: CrudService,
               private router: Router) {
   }
 
-  public ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
+    await this.authenticationService.checkLoggedInStatus();
     this.loggedIn = this.authenticationService.isLogged();
     this.authenticationService.loggedIn.subscribe((value: boolean) => {
       this.loggedIn = value;
@@ -69,7 +74,7 @@ export class AppComponent {
     this.aboutDialogVisible = true;
   }
 
-  private async initMenuItems(): Promise<void> {
+  private initMenuItems(): void {
     this.translateService.get('Home.Menu.Logout').subscribe((translated: string) => {
       this.items = [
         {

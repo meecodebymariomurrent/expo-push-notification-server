@@ -49,11 +49,11 @@
     "class-transformer-validator": "^0.9.1",
     "class-validator": "^0.13.2",
     "cors": "^2.8.5",
-    "dotenv": "^12.0.3",
+    "dotenv": "^15.0.0",
     "expo-server-sdk": "^3.6.0",
     "express": "^4.17.2",
     "express-winston": "^4.2.0",
-    "helmet": "^5.0.1",
+    "helmet": "^5.0.2",
     "http-status-codes": "^2.2.0",
     "inversify": "^6.0.1",
     "inversify-express-utils": "^6.4.3",
@@ -61,6 +61,6 @@
     "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13",
     "rethinkdb-ts": "^2.4.18",
-    "winston": "^3.4.0"
+    "winston": "^3.5.1"
   }
 }

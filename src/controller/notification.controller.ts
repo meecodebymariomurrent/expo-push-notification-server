@@ -12,7 +12,6 @@ import { NotificationRequest } from '../models/request/notification-request.mode
 import logger from '../utils/logger';
 import { ApiError } from '../models/errors/api-error.model';
 import { NotificationResponse } from '../models/response/notification-response.model';
-import { NotificationRequestData } from '../models/request/notification-request-data.model';
 
 @controller('/notification', JwtMiddleware.name)
 export class NotificationController implements interfaces.Controller {
