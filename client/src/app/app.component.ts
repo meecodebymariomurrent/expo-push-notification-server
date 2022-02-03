@@ -9,8 +9,6 @@ import { NGXLogger } from 'ngx-logger';
 import { Router } from '@angular/router';
 import { Page } from './constants/page.enum';
 import { CrudService } from './services/http/crud.service';
-import { ApiPath } from './constants/api-path.enum';
-import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -67,7 +65,7 @@ export class AppComponent implements OnInit {
 
   private logout(): void {
     this.authenticationService.logout();
-    this.router.navigate([Page.Login]);
+    this.router.navigate([Page.Login]).catch(this.logger.error);
   }
 
   private showAboutInfo(): void {
@@ -75,7 +73,7 @@ export class AppComponent implements OnInit {
   }
 
   private initMenuItems(): void {
-    this.translateService.get('Home.Menu.Logout').subscribe((translated: string) => {
+    this.translateService.get('Home.Menu.Logout').subscribe(() => {
       this.items = [
         {
           label: this.translateService.instant('Home.Menu.Logout'),
