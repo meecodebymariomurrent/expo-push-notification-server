@@ -16,6 +16,9 @@
 - [ ] Log for sent notifications
   - [ ] Delete them periodically (time can be set via settings)
 - [ ] Possibility to acknowledge notifications from client
+- [ ] Backup/Restore data
+  - [ ] Manually
+  - [ ] Automatically to specific provider
 
 ## Frontend
 
