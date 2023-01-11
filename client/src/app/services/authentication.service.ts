@@ -39,6 +39,7 @@ export class AuthenticationService {
       this.loggedIn.next(true);
       return Promise.resolve(true);
     } catch (error) {
+      this.loggedIn.next(false);
       this.logger.error('Error during login request', error);
       return Promise.reject(error);
     }

@@ -22,6 +22,7 @@ import { FooterModule } from './components/footer/footer.module';
 import { AboutDialogModule } from './components/dialogs/about-dialog/about-dialog.module';
 import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,9 @@ import { ButtonModule } from 'primeng/button';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(private authenticationService: AuthenticationService) {
+    authenticationService.checkLoggedInStatus();
+  }
 }
 
 export function createTranslateLoader(http: HttpClient) {
