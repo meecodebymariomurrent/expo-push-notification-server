@@ -1,7 +1,6 @@
 import {  NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LogoModule } from '../../components/logo/logo.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -19,7 +18,6 @@ import { SettingsPageComponent } from './settings-page.component';
   imports: [
     CommonModule,
     LogoModule,
-    FlexLayoutModule,
     FormsModule,
     InputTextModule,
     ButtonModule,
